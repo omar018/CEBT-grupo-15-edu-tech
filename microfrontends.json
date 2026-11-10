@@ -1,0 +1,46 @@
+{
+  "$schema": "https://vercel.com/schemas/microfrontends.json",
+  "version": 1,
+  "applications": {
+    "shell": {
+      "path": "/",
+      "default": true
+    },
+    "diagnostic": {
+      "path": "/diagnostic/*",
+      "routing": [
+        {
+          "src": "/diagnostic/(.*)",
+          "dest": "/diagnostic/$1"
+        }
+      ]
+    },
+    "matcher": {
+      "path": "/matcher/*",
+      "routing": [
+        {
+          "src": "/matcher/(.*)",
+          "dest": "/matcher/$1"
+        }
+      ]
+    },
+    "booking": {
+      "path": "/booking/*",
+      "routing": [
+        {
+          "src": "/booking/(.*)",
+          "dest": "/booking/$1"
+        }
+      ]
+    },
+    "cebt-metrics": {
+      "path": "/cebt-metrics/*",
+      "routing": [
+        {
+          "src": "/cebt-metrics/(.*)",
+          "dest": "/cebt-metrics/$1"
+        }
+      ]
+    }
+  }
+}
