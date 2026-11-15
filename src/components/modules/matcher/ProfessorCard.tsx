@@ -1,5 +1,5 @@
 import React from 'react'
-import { CheckCircle, MapPin, Sparkles, Calendar, MessageSquare, Star, ArrowUpRight } from 'lucide-react'
+import { CheckCircle, MapPin, Calendar, MessageSquare, Star, ArrowUpRight } from 'lucide-react'
 import type { MatchedProfessor } from '../../../types/professor'
 import { Card, CardContent } from '../../ui/Card'
 import { Badge } from '../../ui/Badge'
@@ -71,11 +71,11 @@ export const ProfessorCard: React.FC<ProfessorCardProps> = ({
             {/* Badge de Match Edumatch */}
             <div className="text-right shrink-0">
               <Badge variant={score >= 85 ? 'lime' : 'unal'} className="text-sm px-2.5 py-1 font-extrabold shadow-sm">
-                <Sparkles className="h-3.5 w-3.5 mr-1" />
+                <CheckCircle className="h-3.5 w-3.5 mr-1" />
                 {score}%
               </Badge>
               <span className="block text-[10px] text-slate-400 font-medium mt-0.5">
-                Química pedagógica
+                Afinidad de método
               </span>
             </div>
           </div>

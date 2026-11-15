@@ -124,7 +124,7 @@ export const DiagnosticInterview: React.FC<DiagnosticInterviewProps> = ({
               disabled={!currentAnswer}
               className="shadow-sm"
             >
-              <span>{currentStepIndex === totalSteps - 1 ? 'Finalizar y Ver La Criba' : 'Siguiente Paso'}</span>
+              <span>{currentStepIndex === totalSteps - 1 ? 'Finalizar y Ver Tutores Recomendados' : 'Siguiente Paso'}</span>
               {currentStepIndex === totalSteps - 1 ? (
                 <CheckCircle className="h-4 w-4" />
               ) : (

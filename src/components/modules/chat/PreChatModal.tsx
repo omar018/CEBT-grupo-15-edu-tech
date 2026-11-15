@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Send, ShieldCheck, Sparkles, Clock } from 'lucide-react'
+import { Send, ShieldCheck, Clock } from 'lucide-react'
 import type { MatchedProfessor } from '../../../types/professor'
 import type { StudentProfile } from '../../../types/learning-profile'
 import { Dialog } from '../../ui/Dialog'
@@ -136,7 +136,7 @@ export const PreChatModal: React.FC<PreChatModalProps> = ({
             }}
             className="text-xs font-bold shadow-sm"
           >
-            <Sparkles className="h-3.5 w-3.5 mr-1" />
+            <ShieldCheck className="h-3.5 w-3.5 mr-1" />
             <span>Agendar con Garantía Edumatch</span>
           </Button>
         </div>

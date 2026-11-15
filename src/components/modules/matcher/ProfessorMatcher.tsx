@@ -41,7 +41,7 @@ export const ProfessorMatcher: React.FC<ProfessorMatcherProps> = ({
   const [isDetailOpen, setIsDetailOpen] = useState(false)
   const [isChatOpen, setIsChatOpen] = useState(false)
   const [selectedMatchForChat, setSelectedMatchForChat] = useState<MatchedProfessor | null>(null)
-  const [cribaMode, setCribaMode] = useState<boolean>(true)
+  const [topRecommendedOnly, setTopRecommendedOnly] = useState<boolean>(true)
 
   const handleOpenDetailModal = (profId: string) => {
     handleSelectProfessor(profId)
@@ -63,11 +63,11 @@ export const ProfessorMatcher: React.FC<ProfessorMatcherProps> = ({
     setSelectedMatchForChat(null)
   }
 
-  const displayedMatches = cribaMode ? filteredMatches.slice(0, 3) : filteredMatches
+  const displayedMatches = topRecommendedOnly ? filteredMatches.slice(0, 3) : filteredMatches
 
   return (
     <div className="space-y-6">
-      {/* Banner Edumatch: La Criba & Velocidad con soporte Dark Mode estricto */}
+      {/* Banner de Tutores Recomendados */}
       <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 p-4 rounded-xl bg-white dark:bg-[#1E232B] border border-surface-200 dark:border-slate-800 shadow-subtle transition-colors">
         <div className="flex items-center gap-3">
           <div className="h-10 w-10 rounded-xl bg-unal-50 dark:bg-unal-950/60 border border-unal-200 dark:border-unal-800 flex items-center justify-center text-unal-700 dark:text-unal-400">
@@ -76,32 +76,32 @@ export const ProfessorMatcher: React.FC<ProfessorMatcherProps> = ({
           <div>
             <div className="flex items-center gap-2">
               <h2 className="text-base font-extrabold text-slate-900 dark:text-white tracking-tight">
-                {cribaMode ? 'La Criba Edumatch (Top 3 Sugerencias)' : 'Directorio Docente Completo'}
+                {topRecommendedOnly ? 'Tutores Recomendados (Mayor Afinidad)' : 'Directorio Docente Completo'}
               </h2>
               <Badge variant="lime" className="text-[11px] font-bold">
                 ≤ 5 min de decisión
               </Badge>
             </div>
             <p className="text-xs text-slate-500 dark:text-slate-400 font-medium">
-              8 de 10 estudiantes prefieren recomendación guiada sin parálisis por análisis
+              Emparejamiento personalizado según tu método de aprendizaje en ciencias básicas
             </p>
           </div>
         </div>
 
-        {/* Toggle Criba vs Catálogo */}
+        {/* Toggle Recomendados vs Catálogo */}
         <div className="flex items-center gap-2">
           <Button
-            variant={cribaMode ? 'default' : 'outline'}
+            variant={topRecommendedOnly ? 'default' : 'outline'}
             size="sm"
-            onClick={() => setCribaMode(true)}
+            onClick={() => setTopRecommendedOnly(true)}
             className="text-xs h-8"
           >
-            Top 3 Sugerencias
+            Top 3 Recomendados
           </Button>
           <Button
-            variant={!cribaMode ? 'default' : 'outline'}
+            variant={!topRecommendedOnly ? 'default' : 'outline'}
             size="sm"
-            onClick={() => setCribaMode(false)}
+            onClick={() => setTopRecommendedOnly(false)}
             className="text-xs h-8"
           >
             Ver Todos ({filteredMatches.length})

@@ -168,7 +168,7 @@ export const ProfileSummaryCard: React.FC<ProfileSummaryCardProps> = ({
           </Button>
 
           <Button variant="default" size="lg" onClick={onExploreMatches} className="w-full sm:w-auto">
-            <span>Ver La Criba (Top 3 Sugerencias)</span>
+            <span>Ver Tutores Recomendados (Top 3)</span>
             <ArrowRight className="h-4 w-4" />
           </Button>
         </div>

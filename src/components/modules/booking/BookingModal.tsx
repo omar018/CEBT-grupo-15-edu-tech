@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { AlertCircle, Sparkles } from 'lucide-react'
+import { AlertCircle, ShieldCheck } from 'lucide-react'
 import type { Professor, MatchedProfessor } from '../../../types/professor'
 import type { StudentProfile } from '../../../types/learning-profile'
 import { Dialog } from '../../ui/Dialog'
@@ -102,7 +102,7 @@ export const BookingModal: React.FC<BookingModalProps> = ({
         <div className="p-3.5 rounded-xl bg-emerald-50/80 dark:bg-emerald-950/40 border border-emerald-200/80 dark:border-emerald-800/60 text-xs space-y-2">
           <div className="flex items-center justify-between font-bold text-emerald-950 dark:text-emerald-200">
             <span className="flex items-center gap-1.5">
-              <Sparkles className="h-4 w-4 text-emerald-700 dark:text-emerald-400" />
+              <ShieldCheck className="h-4 w-4 text-emerald-700 dark:text-emerald-400" />
               Tarifa Única de Conexión Edumatch:
             </span>
             <span className="text-sm text-emerald-800 dark:text-emerald-300 font-extrabold">$5.000 COP</span>

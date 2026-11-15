@@ -1,5 +1,5 @@
 import React from 'react'
-import { Compass, Sparkles, BookOpen, Zap, Sun, Moon } from 'lucide-react'
+import { Compass, GraduationCap, BookOpen, Zap, Sun, Moon } from 'lucide-react'
 import { cn } from '../../lib/utils'
 
 export type ActiveView = 'diagnostic' | 'matcher' | 'booking'
@@ -27,8 +27,8 @@ export const Navbar: React.FC<NavbarProps> = ({
     },
     {
       id: 'matcher' as const,
-      label: 'La Criba & Docentes',
-      icon: Sparkles,
+      label: 'Tutores Recomendados',
+      icon: GraduationCap,
     },
     {
       id: 'booking' as const,
