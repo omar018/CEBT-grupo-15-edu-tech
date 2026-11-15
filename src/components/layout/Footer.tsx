@@ -1,10 +1,6 @@
 import React from 'react'
 
-interface FooterProps {
-  readonly onOpenCebtValidation?: () => void
-}
-
-export const Footer: React.FC<FooterProps> = ({ onOpenCebtValidation }) => {
+export const Footer: React.FC = () => {
   return (
     <footer className="mt-20 border-t border-surface-200 dark:border-slate-800 bg-white/80 dark:bg-[#181C22]/80 py-8 transition-colors">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 space-y-4">
@@ -24,15 +20,9 @@ export const Footer: React.FC<FooterProps> = ({ onOpenCebtValidation }) => {
           <span>
             Garantía de Reemplazo Inmediato · Reembolso de Tarifa de Conexión Protegido
           </span>
-          {onOpenCebtValidation && (
-            <button
-              type="button"
-              onClick={onOpenCebtValidation}
-              className="text-slate-400 hover:text-unal-700 dark:hover:text-unal-400 underline decoration-dotted transition-colors"
-            >
-              Ficha Técnica del Proyecto (CEBT Grupo 15)
-            </button>
-          )}
+          <span>
+            Ciencias Básicas: Cálculo, Álgebra Lineal, Física Mecánica y Programación
+          </span>
         </div>
       </div>
     </footer>

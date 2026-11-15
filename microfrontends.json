@@ -32,15 +32,6 @@
           "dest": "/booking/$1"
         }
       ]
-    },
-    "cebt-metrics": {
-      "path": "/cebt-metrics/*",
-      "routing": [
-        {
-          "src": "/cebt-metrics/(.*)",
-          "dest": "/cebt-metrics/$1"
-        }
-      ]
     }
   }
 }

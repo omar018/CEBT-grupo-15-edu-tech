@@ -2,7 +2,7 @@ import React from 'react'
 import { Compass, Sparkles, BookOpen, Zap, Sun, Moon } from 'lucide-react'
 import { cn } from '../../lib/utils'
 
-export type ActiveView = 'diagnostic' | 'matcher' | 'booking' | 'cebt'
+export type ActiveView = 'diagnostic' | 'matcher' | 'booking'
 
 interface NavbarProps {
   readonly activeView: ActiveView
