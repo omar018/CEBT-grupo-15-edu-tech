@@ -1,11 +1,12 @@
 import React, { useState } from 'react'
-import { Sparkles, Users, BookCheck } from 'lucide-react'
+import { Zap, BookCheck } from 'lucide-react'
 import type { useProfessorMatcher } from '../../../hooks/useProfessorMatcher'
 import type { StudentProfile } from '../../../types/learning-profile'
 import type { MatchedProfessor } from '../../../types/professor'
 import { ProfessorCard } from './ProfessorCard'
 import { ProfessorFilters } from './ProfessorFilters'
 import { ProfessorDetailModal } from './ProfessorDetailModal'
+import { PreChatModal } from '../chat/PreChatModal'
 import { Badge } from '../../ui/Badge'
 import { Button } from '../../ui/Button'
 
@@ -20,7 +21,6 @@ export const ProfessorMatcher: React.FC<ProfessorMatcherProps> = ({
   matcherState,
   studentProfile,
   onBookSession,
-  onGoToDiagnostic,
 }) => {
   const {
     selectedFaculty,
@@ -34,12 +34,14 @@ export const ProfessorMatcher: React.FC<ProfessorMatcherProps> = ({
     sortCriterion,
     setSortCriterion,
     filteredMatches,
-    allRankedMatches,
     selectedMatchedProfessor,
     handleSelectProfessor,
   } = matcherState
 
   const [isDetailOpen, setIsDetailOpen] = useState(false)
+  const [isChatOpen, setIsChatOpen] = useState(false)
+  const [selectedMatchForChat, setSelectedMatchForChat] = useState<MatchedProfessor | null>(null)
+  const [cribaMode, setCribaMode] = useState<boolean>(true) // True = Top 3 sugerencias guiadas (Slide 7)
 
   const handleOpenDetailModal = (profId: string) => {
     handleSelectProfessor(profId)
@@ -51,57 +53,64 @@ export const ProfessorMatcher: React.FC<ProfessorMatcherProps> = ({
     handleSelectProfessor(null)
   }
 
-  const averageMatch =
-    allRankedMatches.length > 0
-      ? Math.round(
-          allRankedMatches.reduce((acc, curr) => acc + curr.breakdown.overallMatchScore, 0) /
-            allRankedMatches.length
-        )
-      : 0
+  const handleOpenChat = (match: MatchedProfessor) => {
+    setSelectedMatchForChat(match)
+    setIsChatOpen(true)
+  }
+
+  const handleCloseChat = () => {
+    setIsChatOpen(false)
+    setSelectedMatchForChat(null)
+  }
+
+  // Criba Edumatch: Top 3 sugerencias para evitar parálisis por análisis (Slide 7)
+  const displayedMatches = cribaMode ? filteredMatches.slice(0, 3) : filteredMatches
 
   return (
     <div className="space-y-6">
-      {/* Banner de estado del matching */}
+      {/* Banner Edumatch: Criba Guiada & Velocidad */}
       <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 p-4 rounded-xl bg-white border border-surface-200 shadow-subtle">
         <div className="flex items-center gap-3">
           <div className="h-10 w-10 rounded-xl bg-unal-50 border border-unal-200 flex items-center justify-center text-unal-700">
-            <Users className="h-5 w-5" />
+            <Zap className="h-5 w-5 text-unal-600" />
           </div>
           <div>
             <div className="flex items-center gap-2">
               <h2 className="text-base font-extrabold text-slate-900 tracking-tight">
-                Directorio Docente UNAL
+                {cribaMode ? 'La Criba Edumatch (Top 3 Sugerencias)' : 'Directorio Docente Completo'}
               </h2>
-              {studentProfile ? (
-                <Badge variant="lime" className="text-[11px]">
-                  Calibrado con tu perfil ({studentProfile.name})
-                </Badge>
-              ) : (
-                <Badge variant="secondary" className="text-[11px]">
-                  Calibración estándar
-                </Badge>
-              )}
+              <Badge variant="lime" className="text-[11px] font-bold">
+                ≤ 5 min de decisión
+              </Badge>
             </div>
             <p className="text-xs text-slate-500 font-medium">
-              {filteredMatches.length} docentes disponibles · Compatibilidad promedio: {averageMatch}%
+              8 de 10 estudiantes prefieren recomendación guiada sin parálisis por análisis
             </p>
           </div>
         </div>
 
-        {!studentProfile && (
+        {/* Toggle Criba vs Catálogo */}
+        <div className="flex items-center gap-2">
           <Button
-            variant="default"
+            variant={cribaMode ? 'default' : 'outline'}
             size="sm"
-            onClick={onGoToDiagnostic}
-            className="text-xs shrink-0 shadow-sm"
+            onClick={() => setCribaMode(true)}
+            className="text-xs h-8"
           >
-            <Sparkles className="h-3.5 w-3.5 mr-1 text-unal-300" />
-            Hacer Entrevista para Mejor Match
+            Top 3 Sugerencias
           </Button>
-        )}
+          <Button
+            variant={!cribaMode ? 'default' : 'outline'}
+            size="sm"
+            onClick={() => setCribaMode(false)}
+            className="text-xs h-8"
+          >
+            Ver Todos ({filteredMatches.length})
+          </Button>
+        </div>
       </div>
 
-      {/* Controles de Filtros */}
+      {/* Filtros */}
       <ProfessorFilters
         selectedFaculty={selectedFaculty}
         onFacultyChange={setSelectedFaculty}
@@ -122,14 +131,15 @@ export const ProfessorMatcher: React.FC<ProfessorMatcherProps> = ({
         }}
       />
 
-      {/* Grid de Profesores Emparejados */}
-      {filteredMatches.length > 0 ? (
+      {/* Grid de Profesores */}
+      {displayedMatches.length > 0 ? (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-          {filteredMatches.map((m) => (
+          {displayedMatches.map((m) => (
             <ProfessorCard
               key={m.professor.id}
               match={m}
               onOpenDetails={handleOpenDetailModal}
+              onOpenChat={handleOpenChat}
               onBookSession={onBookSession}
             />
           ))}
@@ -138,11 +148,8 @@ export const ProfessorMatcher: React.FC<ProfessorMatcherProps> = ({
         <div className="text-center py-12 px-4 rounded-xl bg-white border border-dashed border-surface-300 space-y-3">
           <BookCheck className="h-10 w-10 text-slate-400 mx-auto" />
           <h3 className="text-sm font-bold text-slate-800">
-            No se encontraron docentes con esos criterios
+            No se encontraron docentes con esos filtros
           </h3>
-          <p className="text-xs text-slate-500 max-w-md mx-auto">
-            Prueba reduciendo el umbral de afinidad o seleccionando "Todas las facultades" para ver más opciones en el campus.
-          </p>
           <Button
             variant="outline"
             size="sm"
@@ -158,13 +165,21 @@ export const ProfessorMatcher: React.FC<ProfessorMatcherProps> = ({
         </div>
       )}
 
-      {/* Modal de Detalle */}
+      {/* Modales */}
       <ProfessorDetailModal
         match={selectedMatchedProfessor}
         studentProfile={studentProfile}
         isOpen={isDetailOpen}
         onClose={handleCloseDetailModal}
         onBookSession={onBookSession}
+      />
+
+      <PreChatModal
+        match={selectedMatchForChat}
+        studentProfile={studentProfile}
+        isOpen={isChatOpen}
+        onClose={handleCloseChat}
+        onProceedToBooking={onBookSession}
       />
     </div>
   )

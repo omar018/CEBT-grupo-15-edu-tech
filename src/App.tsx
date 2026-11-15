@@ -11,16 +11,15 @@ import { useDiagnostic } from './hooks/useDiagnostic'
 import { useProfessorMatcher } from './hooks/useProfessorMatcher'
 import { useBooking } from './hooks/useBooking'
 import type { MatchedProfessor } from './types/professor'
+import { Zap, ShieldCheck, Clock } from 'lucide-react'
 
 export function App() {
   const [activeView, setActiveView] = useState<ActiveView>('diagnostic')
 
-  // Hooks orquestadores (Separación de responsabilidades y SoC estricta)
   const diagnosticState = useDiagnostic('Estudiante UNAL')
   const matcherState = useProfessorMatcher(diagnosticState.deducedProfile)
   const bookingState = useBooking()
 
-  // Estado para el modal de agendamiento
   const [selectedMatchForBooking, setSelectedMatchForBooking] = useState<MatchedProfessor | null>(null)
   const [isBookingModalOpen, setIsBookingModalOpen] = useState(false)
 
@@ -45,12 +44,11 @@ export function App() {
 
   return (
     <div className="min-h-screen flex flex-col bg-surface-50 text-slate-800">
-      {/* PR-10: Región accesible permanente para anuncios a lectores de pantalla */}
+      {/* PR-10: Región accesible permanente */}
       <StatusAnnouncer
         message={`${diagnosticState.statusAnnouncement} ${bookingState.bookingStatusMessage}`}
       />
 
-      {/* Navegación y encabezado institucional */}
       <Navbar
         activeView={activeView}
         onViewChange={setActiveView}
@@ -58,26 +56,36 @@ export function App() {
         matchCount={matcherState.filteredMatches.length}
       />
 
-      {/* Contenido Principal */}
       <main className="flex-1 mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 py-8">
-        {/* Banner Hero Contextual */}
+        {/* Banner Hero Edumatch */}
         <div className="mb-8 rounded-2xl bg-white border border-surface-200 p-6 sm:p-8 shadow-subtle relative overflow-hidden">
           <div className="absolute right-0 top-0 bottom-0 w-1/3 bg-gradient-to-l from-unal-50/70 to-transparent pointer-events-none hidden md:block" />
           <div className="max-w-2xl relative z-10">
             <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-unal-50 border border-unal-200 text-xs font-bold text-unal-800 mb-3">
-              <span className="h-2 w-2 rounded-full bg-unal-600 animate-pulse" />
-              Algoritmo de Matching Cognitivo VAK + Kolb
+              <Zap className="h-3.5 w-3.5 text-unal-600" />
+              <span>Edumatch · Foco: Ingeniería en primeros semestres</span>
             </div>
             <h1 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight leading-tight">
-              Aprende con quien enseña como tú piensas
+              De la improvisación al emparejamiento perfecto en ciencias básicas
             </h1>
             <p className="mt-2 text-sm text-slate-600 leading-relaxed">
-              Deducimos tu método de aprendizaje (sensorial, teórico-práctico y de interacción) y te conectamos con docentes y tutores de la Universidad Nacional de Colombia en sintonía con tu ritmo cognitivo.
+              7 de 10 estudiantes tardan más de 24 horas buscando tutor en WhatsApp. Con Edumatch, obtén en ≤ 5 minutos tus 2-3 tutores ideales, valida la química con un chat previo gratuito y agenda con garantía de reemplazo por solo $5.000 COP.
             </p>
+
+            <div className="mt-4 flex flex-wrap gap-4 text-xs font-semibold text-slate-600">
+              <div className="flex items-center gap-1 text-unal-800">
+                <Clock className="h-4 w-4 text-unal-700" />
+                <span>Diagnóstico ágil en &lt; 5 min</span>
+              </div>
+              <div className="flex items-center gap-1 text-unal-800">
+                <ShieldCheck className="h-4 w-4 text-unal-700" />
+                <span>Garantía de reembolso o reemplazo</span>
+              </div>
+            </div>
           </div>
         </div>
 
-        {/* Vistas del Microfrontend */}
+        {/* Vistas */}
         {activeView === 'diagnostic' && (
           <DiagnosticInterview
             diagnosticState={diagnosticState}
@@ -104,7 +112,6 @@ export function App() {
         {activeView === 'cebt' && <CebtValidationDashboard />}
       </main>
 
-      {/* Modal de Agendamiento */}
       <BookingModal
         match={selectedMatchForBooking}
         studentProfile={diagnosticState.deducedProfile}

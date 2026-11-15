@@ -1,26 +1,46 @@
-export interface CebtRubricItem {
+export type HypothesisStatus = 'Validada' | 'Ajustada' | 'En validación'
+
+export interface EdumatchHypothesis {
+  readonly id: string // 'H1' - 'H10'
+  readonly category: 'El Dolor y la IA' | 'La Conexión' | 'El Negocio'
+  readonly name: string
+  readonly status: HypothesisStatus
+  readonly learning: string
+  readonly decision: string
+}
+
+export interface UserJourneyStage {
+  readonly stageNumber: number
+  readonly title: string
+  readonly whatUserDoes: string
+  readonly painPoint: string
+  readonly edumatchOpportunity: string
+}
+
+export interface TeamMember {
+  readonly name: string
+  readonly role: string
+}
+
+export interface PilotKPI {
   readonly id: string
-  readonly title: string
-  readonly maxPoints: number
-  readonly currentScore: number
-  readonly status: 'aligned' | 'in_progress' | 'needs_evidence'
+  readonly label: string
   readonly description: string
-  readonly evidenceDetail: string
+  readonly targetPercentage: number
+  readonly currentPercentage: number
 }
 
-export interface CebtPitchSection {
-  readonly number: string
-  readonly title: string
-  readonly subtitle: string
-  readonly content: string
-  readonly metric?: string
-}
-
-export interface CebtValidationState {
-  readonly hypothesis: string
-  readonly primaryMetric: string
-  readonly threshold: string
-  readonly totalScore: number
-  readonly rubricItems: readonly CebtRubricItem[]
-  readonly pitchSections: readonly CebtPitchSection[]
+export interface EdumatchValidationState {
+  readonly projectName: string
+  readonly tagLine: string
+  readonly groupNumber: number
+  readonly university: string
+  readonly cohortDate: string
+  readonly targetSegment: string
+  readonly valueCaptureConnectionFeeCop: number
+  readonly marketHourlyRateCopRange: string
+  readonly teamMembers: readonly TeamMember[]
+  readonly hypotheses: readonly EdumatchHypothesis[]
+  readonly userJourney: readonly UserJourneyStage[]
+  readonly pilotKPIs: readonly PilotKPI[]
 }

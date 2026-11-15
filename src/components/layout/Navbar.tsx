@@ -1,5 +1,5 @@
 import React from 'react'
-import { Compass, Sparkles, BookOpen, Presentation, GraduationCap } from 'lucide-react'
+import { Compass, Sparkles, BookOpen, Presentation, Zap } from 'lucide-react'
 import { Badge } from '../ui/Badge'
 import { cn } from '../../lib/utils'
 
@@ -21,61 +21,58 @@ export const Navbar: React.FC<NavbarProps> = ({
   const navItems = [
     {
       id: 'diagnostic' as const,
-      label: 'Entrevista Diagnóstica',
+      label: 'Diagnóstico (< 5 min)',
       icon: Compass,
-      badge: hasCompletedDiagnostic ? 'Perfil listo' : '5 pasos',
+      badge: hasCompletedDiagnostic ? 'Perfil listo' : 'Rápido',
       badgeVariant: hasCompletedDiagnostic ? ('lime' as const) : ('unal' as const),
     },
     {
       id: 'matcher' as const,
-      label: 'Docentes & Match Pedagógico',
+      label: 'La Criba & Docentes',
       icon: Sparkles,
       badge: matchCount > 0 ? `${matchCount} afines` : undefined,
       badgeVariant: 'amber' as const,
     },
     {
       id: 'booking' as const,
-      label: 'Agenda y Compromiso',
+      label: 'Tutorías y Garantías',
       icon: BookOpen,
       badge: undefined,
       badgeVariant: 'secondary' as const,
     },
     {
       id: 'cebt' as const,
-      label: 'Pitch & Rúbrica CEBT',
+      label: 'Validación CEBT (H1-H10)',
       icon: Presentation,
-      badge: '100 pts',
+      badge: 'Grupo 15',
       badgeVariant: 'lime' as const,
     },
   ]
 
   return (
     <header className="sticky top-0 z-40 w-full border-b border-surface-200 bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/80">
-      {/* Barra superior de acento institucional UNAL */}
       <div className="h-1.5 w-full bg-gradient-to-r from-unal-700 via-unal-400 to-unal-300" />
 
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
-        {/* Identidad de la plataforma */}
         <div className="flex items-center gap-3">
-          <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-unal-700 to-unal-900 text-white shadow-sm ring-1 ring-unal-800/10">
-            <GraduationCap className="h-6 w-6 text-unal-300" />
+          <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-unal-800 to-unal-950 text-white shadow-sm ring-1 ring-unal-800/10">
+            <Zap className="h-5 w-5 text-unal-300 fill-unal-300" />
           </div>
           <div className="flex flex-col">
             <div className="flex items-center gap-2">
-              <span className="font-extrabold text-slate-900 text-base sm:text-lg tracking-tight">
-                Sintaxis<span className="text-unal-700">Pedagógica</span>
+              <span className="font-black text-slate-900 text-lg sm:text-xl tracking-tight">
+                Edu<span className="text-unal-700">match</span>
               </span>
-              <span className="hidden sm:inline-block rounded-md bg-unal-50 px-2 py-0.5 text-[11px] font-semibold text-unal-800 border border-unal-200">
-                UNAL Lab
+              <span className="hidden sm:inline-block rounded-md bg-unal-50 px-2 py-0.5 text-[11px] font-bold text-unal-800 border border-unal-200">
+                Grupo 15 · UNAL
               </span>
             </div>
             <span className="text-[11px] text-slate-500 font-medium hidden sm:block">
-              Matching Inteligente Estudiante · Docente
+              De la improvisación al emparejamiento perfecto en ciencias básicas
             </span>
           </div>
         </div>
 
-        {/* Navegación Desktop */}
         <nav className="hidden md:flex items-center gap-1.5" aria-label="Navegación principal">
           {navItems.map((item) => {
             const Icon = item.icon
@@ -89,7 +86,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                 className={cn(
                   'flex items-center gap-2 px-3.5 py-2 text-sm font-medium rounded-lg transition-all duration-150',
                   isActive
-                    ? 'bg-unal-50 text-unal-800 shadow-sm border border-unal-200/80 font-semibold'
+                    ? 'bg-unal-50 text-unal-800 shadow-sm border border-unal-200/80 font-bold'
                     : 'text-slate-600 hover:text-slate-900 hover:bg-surface-100'
                 )}
                 aria-current={isActive ? 'page' : undefined}
@@ -106,7 +103,6 @@ export const Navbar: React.FC<NavbarProps> = ({
           })}
         </nav>
 
-        {/* Selector rápido mobile */}
         <div className="flex md:hidden items-center gap-1">
           {navItems.map((item) => {
             const Icon = item.icon

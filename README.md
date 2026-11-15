@@ -1,70 +1,55 @@
-# Sintaxis Pedagógica · Plataforma de Match Estudiante-Docente UNAL
+# Edumatch · De la improvisación al emparejamiento perfecto en ciencias básicas
 
-Plataforma inteligente y prototipo MVP para el proyecto de **Creación de Empresas de Base Tecnológica (CEBT)** de la **Universidad Nacional de Colombia**. 
+**Grupo 15 · Creación de Empresas de Base Tecnológica (CEBT)**  
+**Universidad Nacional de Colombia · Octubre de 2026**
 
-Conecta a estudiantes con profesores y tutores basándose en la deducción interactiva de su **estilo de aprendizaje** (VAK, Ciclo de Kolb y ritmo de interacción), previniendo la deserción y reprobación en materias filtro.
-
----
-
-## 🎨 Identidad Visual y Paleta de Colores UNAL (Sin kitUnal)
-Inspirada en los valores y colores institucionales de la Universidad Nacional de Colombia:
-- **Verde Institucional Clásico UNAL**: `#006837` (Acentos de rigor, identidad y encabezados).
-- **Verde Lima UNAL**: `#94B43B` / `#84BD00` (Insignias de alto match, estados activos e interacción).
-- **Verde Petróleo Oscuro**: `#081E12` / `#0B1711` (Superficies de alto contraste y tipografía sólida).
-- **Superficie Lienzo / Marfil Académico**: `#F8FAF7` / `#FFFFFF` (Fondo limpio que evita la fatiga visual).
-- **Acento Dorado / Ámbar**: `#D97706` (Indicadores de advertencia y compatibilidad intermedia).
-- **Accesibilidad**: Cumplimiento estricto con WCAG AA y AAA en contraste de texto.
+> **Integrantes:**
+> - Santiago Cañaveral Loaiza
+> - Jose Gabriel Torres Quintero
+> - Ruber Armando Mojica Forbes
+> - Omar Enrique Chavez Fonseca
+> - Eduardo Daniel Payares Barragán
 
 ---
 
-## 🧩 Arquitectura Microfrontends (`microfrontends.json`)
-La plataforma implementa una arquitectura desacoplada por dominios funcionales:
-1. **`diagnostic`**: Módulo interactivo de 5 pasos para deducir el método de aprendizaje del estudiante.
-2. **`matcher`**: Motor algorítmico multidimensional de compatibilidad y explorador de profesores UNAL.
-3. **`booking`**: Módulo de agendamiento de tutorías, acuerdos de aprendizaje y seguimiento.
-4. **`cebt-metrics`**: Panel de validación de negocio según la estructura de pitch en 6 pasos y la **rúbrica de 100 puntos** de CEBT.
+## 🎯 El Problema Validado (Anatomía del Pánico Académico)
+- **T-72h:** Descubre el vacío conceptual (*"No entiendo casi nada"*).
+- **T-48h:** Límite de la IA (*"La IA resuelve el ejercicio mecánico, pero no me enseña a resolver uno parecido solo"* — E05). El 100% usa IA semanalmente, pero 8 de 10 pagaron por un tutor humano para verificar razonamiento.
+- **T-24h:** Caos de WhatsApp (*"Escribiendo a grupos, esperando respuestas"*). 7 de 10 tardan ≥24h y 5 de 10 contactan 3+ canales sin respuesta oportuna.
+- **Causa #1 de abandono (57%):** 6 de cada 8 estudiantes abandonaron a un tutor pagado anterior por falla en la pedagogía, método o paciencia.
 
 ---
 
-## 🧠 Algoritmo de Deducción y Matching Pedagógico
-El motor calcula la distancia euclidiana normalizada sobre un vector de 6 dimensiones cognitivas:
-$$\text{Similitud} = \max\left(50, \min\left(99, 100 \times \left(1 - \sqrt{\frac{1}{6} \sum_{i=1}^{6} \left(\frac{D_{\text{estudiante}, i} - D_{\text{docente}, i}}{100}\right)^2}\right)\right)\right)$$
-
-### Dimensiones evaluadas:
-1. **Canal Visual**: Diagramas de bloques, mapas conceptuales, visualización geométrica.
-2. **Canal Auditivo**: Explicación dialéctica, analogías orales, debate socrático.
-3. **Canal Kinestésico**: Práctica directa, código en vivo, simuladores y modelos a escala.
-4. **Abstracción Teórica**: Rigor formal, deducción desde axiomas y demostraciones.
-5. **Resolución Práctica**: Casos de estudio contextuales en Colombia y problemas tipo examen.
-6. **Autonomía y Descubrimiento**: Mayéutica socrática vs. instrucción estructurada directiva.
+## 💡 La Solución Edumatch
+1. **Diagnóstico Express (< 5 min):** Umbral crítico de tolerancia inicial (7 de 8 estudiantes toleran máximo 5 min).
+2. **La Criba Edumatch (Top 2-3 sugerencias):** Elimina la parálisis por análisis; 8 de 10 prefieren recomendaciones guiadas en lugar de directorios exhaustivos.
+3. **Pivote de Confianza (Reseñas de Pares & Chat Gratuito Pre-Pago):** 8 de 10 prefieren reseñas de compañeros sobre notas institucionales. Para arranques en frío, el **chat previo gratuito en vivo** valida la química antes de abrir la billetera.
+4. **Captura de Valor (Pay-Per-Match):** Tarifa plana de conexión de **COP $5.000** (aceptada por el 100% de los entrevistados).
+5. **Defensa contra WhatsApp:** Garantía de **reemplazo automático y reembolso asegurado** si el tutor no asiste o cancela.
 
 ---
 
-## 🚀 Puesta en Marcha
+## 🧪 Matriz de Hipótesis Validadas (H1 a H10)
+- **H1 (Dolor de búsqueda):** *Ajustada* — Medir demora e incertidumbre en WhatsApp.
+- **H2 (Demanda vs IA):** *Validada* — La IA filtra, el tutor verifica.
+- **H3 (Química pedagógica):** *Ajustada* — Cuestionario de afinidad + puntualidad.
+- **H4 (Segmento foco):** *Validada* — Ciclo básico de ingeniería (Cálculo, Álgebra, Física, Programación).
+- **H5/H8 (Usabilidad):** *Validada* — Diagnóstico en < 5 min y criba de 2-3 sugerencias.
+- **H6 (Confianza):** *Ajustada* — Reseñas de estudiantes y chat previo gratuito.
+- **H9 (Retención vs WhatsApp):** *Ajustada* — Garantía de reemplazo como ancla.
+- **H10 (Pricing):** *Validada* — COP $5.000 es el punto dulce.
+
+---
+
+## 🚀 Comandos
 
 ```bash
-# Instalar dependencias
-npm install
-
 # Iniciar servidor de desarrollo
 npm run dev
 
-# Ejecutar pruebas unitarias (Vitest con tests parametrizados)
+# Ejecutar pruebas unitarias (Vitest)
 npm test
 
 # Compilar para producción
 npm run build
 ```
-
----
-
-## 📋 Cumplimiento de Guardrails de Calidad
-- **PR-01**: Cero artefactos de depuración (`console.log` eliminado).
-- **PR-02**: Desestructuración segura con encadenamiento opcional `?.` y `??`.
-- **PR-03**: Componentes modulares y cohesivos con menos de 180 líneas.
-- **PR-04**: Cero props en estado inicial susceptible a cambios externos.
-- **PR-07**: Validación temprana fail-fast con errores descriptivos.
-- **PR-10**: Región accesible permanente con `role="status"` y `aria-live="polite"` montada en el DOM.
-- **PR-12**: *Single Source of Truth* en envío de formularios reactivos.
-- **PR-14**: Formateo nativo de fechas con `Intl.DateTimeFormat("es-CO")`.
-- **PR-15**: Pruebas unitarias parametrizadas con `it.each` en Vitest (0% duplicación).

@@ -33,8 +33,6 @@ export const BookingModal: React.FC<BookingModalProps> = ({
   if (!match) return null
 
   const { professor, breakdown } = match
-
-  // Estado del formulario (Single Source of Truth - PR-12)
   const [selectedSubject, setSelectedSubject] = useState<string>(professor.subjects[0] ?? '')
   const [sessionDate, setSessionDate] = useState<string>(() => {
     const nextDay = new Date()
@@ -45,7 +43,7 @@ export const BookingModal: React.FC<BookingModalProps> = ({
   const [targetTopic, setTargetTopic] = useState<string>('')
   const [studentNotes, setStudentNotes] = useState<string>(
     studentProfile
-      ? `Estudiante con perfil ${studentProfile.primarySensory}. Recomiendo iniciar con un esquema visual y enfocar la sesión en ejercicios tipo parcial.`
+      ? `Estudiante de ${studentProfile.faculty}. Priorizar explicación conceptual y resolución de ejercicios tipo examen.`
       : ''
   )
   const [errorMessage, setErrorMessage] = useState<string | null>(null)
@@ -53,7 +51,6 @@ export const BookingModal: React.FC<BookingModalProps> = ({
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
 
-    // Validación temprana Fail-Fast (PR-07)
     if (!selectedSubject.trim()) {
       setErrorMessage('Por favor selecciona una asignatura.')
       return
@@ -89,7 +86,7 @@ export const BookingModal: React.FC<BookingModalProps> = ({
     <Dialog
       isOpen={isOpen}
       onClose={onClose}
-      title={`Agendar Tutoría: ${professor.fullName}`}
+      title={`Confirmar Match y Tutoría: ${professor.fullName}`}
       description={`${professor.department} · ${professor.modality}`}
       maxWidth="md"
     >
@@ -101,21 +98,25 @@ export const BookingModal: React.FC<BookingModalProps> = ({
           </div>
         )}
 
-        {/* Resumen de match */}
-        <div className="p-3 rounded-xl bg-unal-50 border border-unal-200 flex items-center justify-between text-xs">
-          <div className="flex items-center gap-2 text-unal-900 font-bold">
-            <Sparkles className="h-4 w-4 text-unal-700" />
-            <span>Afinidad pedagógica: {breakdown.overallMatchScore}%</span>
+        <div className="p-3.5 rounded-xl bg-unal-50 border border-unal-200 text-xs space-y-2">
+          <div className="flex items-center justify-between font-bold text-unal-950">
+            <span className="flex items-center gap-1.5">
+              <Sparkles className="h-4 w-4 text-unal-700" />
+              Tarifa Única de Conexión Edumatch:
+            </span>
+            <span className="text-sm text-unal-800 font-extrabold">$5.000 COP</span>
           </div>
-          <Badge variant="lime" className="text-[11px]">
-            {professor.modality}
-          </Badge>
+          <div className="flex items-center justify-between text-[11px] text-slate-600 pt-1 border-t border-unal-200/60">
+            <span>Honorario del tutor: ${professor.hourlyRateCop.toLocaleString('es-CO')} / h</span>
+            <Badge variant="lime" className="text-[10px]">
+              Garantía de Reemplazo o Reembolso
+            </Badge>
+          </div>
         </div>
 
-        {/* Asignatura */}
         <div>
           <label htmlFor="subject-select" className="block text-xs font-bold text-slate-700 mb-1">
-            Asignatura a reforzar *
+            Asignatura a trabajar *
           </label>
           <select
             id="subject-select"
@@ -131,11 +132,10 @@ export const BookingModal: React.FC<BookingModalProps> = ({
           </select>
         </div>
 
-        {/* Fecha y Franja Horaria */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
           <div>
             <label htmlFor="date-input" className="block text-xs font-bold text-slate-700 mb-1">
-              Fecha propuesta *
+              Fecha de la tutoría *
             </label>
             <input
               id="date-input"
@@ -164,25 +164,23 @@ export const BookingModal: React.FC<BookingModalProps> = ({
           </div>
         </div>
 
-        {/* Tema específico */}
         <div>
           <label htmlFor="topic-input" className="block text-xs font-bold text-slate-700 mb-1">
-            Tema o ejercicio específico a trabajar *
+            Tema específico que no entiendes *
           </label>
           <input
             id="topic-input"
             type="text"
             value={targetTopic}
             onChange={(e) => setTargetTopic(e.target.value)}
-            placeholder="Ej: Teorema de Convergencia Dominada o Balance de Entalpía"
+            placeholder="Ej: Teorema de Green y cálculo de trabajo en campos vectoriales"
             className="w-full h-10 px-3 text-xs bg-white border border-surface-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-unal-700/30"
           />
         </div>
 
-        {/* Notas y preferencias pedagógicas */}
         <div>
           <label htmlFor="notes-area" className="block text-xs font-bold text-slate-700 mb-1">
-            Nota de estilo de aprendizaje para el docente
+            Comentario para el tutor (opcional)
           </label>
           <textarea
             id="notes-area"
@@ -193,13 +191,12 @@ export const BookingModal: React.FC<BookingModalProps> = ({
           />
         </div>
 
-        {/* Botones de acción */}
         <div className="pt-2 flex items-center justify-end gap-2">
           <Button variant="secondary" type="button" onClick={onClose}>
             Cancelar
           </Button>
           <Button variant="default" type="submit" className="font-semibold shadow-sm">
-            Confirmar y Agendar Tutoría
+            Abonar $5.000 COP y Agendar
           </Button>
         </div>
       </form>

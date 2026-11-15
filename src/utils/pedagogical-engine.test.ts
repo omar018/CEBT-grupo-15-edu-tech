@@ -4,7 +4,6 @@ import {
   computeMatchScore,
   rankProfessors,
 } from './pedagogical-engine'
-import type { DiagnosticOption, LearningDimensions } from '../types/learning-profile'
 import { UNAL_PROFESSORS } from '../data/professors'
 
 describe('Pedagogical Engine - Pure functions', () => {

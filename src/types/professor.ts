@@ -10,6 +10,16 @@ export type UnalFaculty =
 
 export type Modality = 'Presencial (Campus UNAL)' | 'Virtual sincrónico' | 'Híbrido'
 
+export interface PeerReview {
+  readonly id: string
+  readonly studentInitials: string
+  readonly semester: string
+  readonly subject: string
+  readonly rating: number
+  readonly comment: string
+  readonly dateFormatted: string
+}
+
 export interface ProfessorTeachingProfile {
   readonly dominantSensoryApproach: SensoryMode
   readonly kolbOrientation: KolbStyle
@@ -32,8 +42,11 @@ export interface Professor {
   readonly subjects: readonly string[]
   readonly modality: Modality
   readonly officeHours: string
+  readonly hourlyRateCop: number
+  readonly peerReviews: readonly PeerReview[]
   readonly teachingProfile: ProfessorTeachingProfile
   readonly verifiedUnal: boolean
+  readonly responseTimeMinutes: number
 }
 
 export interface MatchScoreBreakdown {
