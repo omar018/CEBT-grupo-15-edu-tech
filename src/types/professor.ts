@@ -1,6 +1,7 @@
 import type { LearningDimensions, SensoryMode, KolbStyle, InteractionStyle } from './learning-profile'
 
 export type UnalFaculty =
+  | 'Facultad de Minas'
   | 'Facultad de Ingeniería'
   | 'Facultad de Ciencias'
   | 'Facultad de Medicina'

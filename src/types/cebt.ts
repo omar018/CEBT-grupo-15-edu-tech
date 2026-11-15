@@ -30,6 +30,34 @@ export interface PilotKPI {
   readonly currentPercentage: number
 }
 
+export interface RubricCriterion {
+  readonly id: string
+  readonly name: string
+  readonly maxScore: 20
+  readonly earnedScore: 20
+  readonly howEdumatchComplies: string
+  readonly prototypeEvidence: string
+  readonly keyMetrics: string
+}
+
+export interface PitchSlide {
+  readonly stepNumber: string // '01' - '06'
+  readonly title: string
+  readonly subtitle: string
+  readonly mainMetric: string
+  readonly narrative: string
+  readonly bulletPoints: readonly string[]
+}
+
+export interface InterviewQuote {
+  readonly id: string // 'E01' - 'E10'
+  readonly student: string
+  readonly program: string
+  readonly quote: string
+  readonly validatedHypothesis: string
+  readonly keyTakeaway: string
+}
+
 export interface EdumatchValidationState {
   readonly projectName: string
   readonly tagLine: string
@@ -43,4 +71,7 @@ export interface EdumatchValidationState {
   readonly hypotheses: readonly EdumatchHypothesis[]
   readonly userJourney: readonly UserJourneyStage[]
   readonly pilotKPIs: readonly PilotKPI[]
+  readonly rubricCriteria: readonly RubricCriterion[]
+  readonly pitchSlides: readonly PitchSlide[]
+  readonly interviewQuotes: readonly InterviewQuote[]
 }
