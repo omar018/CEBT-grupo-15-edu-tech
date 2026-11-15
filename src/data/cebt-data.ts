@@ -337,4 +337,60 @@ export const EDUMATCH_VALIDATION_DATA: EdumatchValidationState = {
       keyTakeaway: 'El pre-chat elimina la barrera de entrada previa al cobro del match.',
     },
   ],
+  financialStrategy: {
+    legalStructure: 'Sociedad por Acciones Simplificada (S.A.S. - Ley 1258 de 2008)',
+    shareTypes: [
+      'Acciones con Voto Múltiple (5:1): Reservadas para los 5 cofundadores de Minas para garantizar el control estratégico y pedagógico.',
+      'Acciones Ordinarias: Otorgan derecho a voto estándar (1:1) y participación plena en dividendos.',
+      'Stock Option Pool (ESOP): Reservado para atracción de talento técnico clave y fidelización de tutores top.',
+    ],
+    governancePacts: [
+      'Acuerdo de Accionistas depositado ante la administración con derecho de preferencia recíproco.',
+      'Restricción a la negociación de acciones por 4 años (Vesting de fundadores a 4 años con cliff de 1 año).',
+      'Voto fraccionado habilitado para elecciones de gobernanza interna.',
+    ],
+    roundType: 'Ronda Pre-Semilla / Incubación Universitaria',
+    investmentInstrument: 'SAFE (Simple Agreement for Future Equity) con Valuation Cap',
+    preMoneyValuationCop: 160000000,
+    investmentTargetCop: 40000000,
+    postMoneyValuationCop: 200000000,
+    runwayMonths: 18,
+    fundsAllocation: {
+      productDev: 40,    // 40% Desarrollo y Algoritmo de Sintonía
+      marketingCAC: 30,  // 30% Marketing & Adquisición en Campus
+      operations: 20,    // 20% Operaciones & Red de Tutores Minas
+      legalReserve: 10,  // 10% Reserva Legal & Contingencias
+    },
+    capTable: [
+      {
+        stakeholder: 'Fundadores Grupo 15 (5 cofundadores)',
+        preRoundShare: 90.0,
+        investmentCop: 0,
+        postRoundShare: 72.0,
+        roleNote: '14.4% c/u (Santiago, Jose, Ruber, Omar, Eduardo) con acciones de voto múltiple',
+      },
+      {
+        stakeholder: 'Stock Option Pool (ESOP)',
+        preRoundShare: 10.0,
+        investmentCop: 0,
+        postRoundShare: 8.0,
+        roleNote: 'Incentivos para desarrolladores clave y tutores líderes de cátedra UNAL',
+      },
+      {
+        stakeholder: 'Inversionista Pre-Semilla / Aceleradora (Apps.co / Ángeles)',
+        preRoundShare: 0.0,
+        investmentCop: 40000000,
+        postRoundShare: 20.0,
+        roleNote: 'Aporte en capital de riesgo para 18 meses de runway y escalamiento a Bogotá',
+      },
+    ],
+  },
+  unitEconomics: {
+    cacCop: 4500,               // Costo de Adquisición de Cliente (stands Minas + WhatsApp)
+    ltvCop: 18500,              // 3.7 tutorías promedio por semestre x $5.000 COP tarifa de match
+    ltvCacRatio: 4.11,          // Ratio LTV/CAC (ideal en la clase > 3x)
+    momGrowthTarget: 22,        // Crecimiento mensual MoM (ideal en la clase > 15%)
+    retentionRateMonth1: 68,    // Tasa de retención segundo parcial (% repetición)
+    burnMultipleTarget: 1.2,    // Eficiencia de capital (Capital quemado vs nuevo ingreso)
+  },
 }

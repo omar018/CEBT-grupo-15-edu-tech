@@ -58,6 +58,42 @@ export interface InterviewQuote {
   readonly keyTakeaway: string
 }
 
+export interface CapTableItem {
+  readonly stakeholder: string
+  readonly preRoundShare: number // %
+  readonly investmentCop: number
+  readonly postRoundShare: number // %
+  readonly roleNote: string
+}
+
+export interface FinancialStrategy {
+  readonly legalStructure: string // 'S.A.S. (Ley 1258 de 2008)'
+  readonly shareTypes: readonly string[]
+  readonly governancePacts: readonly string[]
+  readonly roundType: string // 'Pre-Semilla / Aceleración'
+  readonly investmentInstrument: string // 'SAFE (Simple Agreement for Future Equity)'
+  readonly preMoneyValuationCop: number
+  readonly investmentTargetCop: number
+  readonly postMoneyValuationCop: number
+  readonly runwayMonths: number
+  readonly fundsAllocation: {
+    readonly productDev: number // %
+    readonly marketingCAC: number // %
+    readonly operations: number // %
+    readonly legalReserve: number // %
+  }
+  readonly capTable: readonly CapTableItem[]
+}
+
+export interface UnitEconomics {
+  readonly cacCop: number
+  readonly ltvCop: number
+  readonly ltvCacRatio: number
+  readonly momGrowthTarget: number
+  readonly retentionRateMonth1: number
+  readonly burnMultipleTarget: number
+}
+
 export interface EdumatchValidationState {
   readonly projectName: string
   readonly tagLine: string
@@ -74,4 +110,6 @@ export interface EdumatchValidationState {
   readonly rubricCriteria: readonly RubricCriterion[]
   readonly pitchSlides: readonly PitchSlide[]
   readonly interviewQuotes: readonly InterviewQuote[]
+  readonly financialStrategy: FinancialStrategy
+  readonly unitEconomics: UnitEconomics
 }

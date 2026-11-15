@@ -14,9 +14,12 @@ import {
   ArrowRight,
   ArrowLeft,
   TrendingUp,
+  PieChart,
+  Scale,
+  DollarSign,
 } from 'lucide-react'
 
-type DashboardTab = 'pitch' | 'rubric' | 'hypotheses' | 'interviews' | 'journey' | 'pilot' | 'team'
+type DashboardTab = 'pitch' | 'rubric' | 'finance' | 'hypotheses' | 'interviews' | 'journey' | 'pilot' | 'team'
 
 export const CebtValidationDashboard: React.FC = () => {
   const [activeTab, setActiveTab] = useState<DashboardTab>('rubric')
@@ -36,6 +39,8 @@ export const CebtValidationDashboard: React.FC = () => {
     rubricCriteria,
     pitchSlides,
     interviewQuotes,
+    financialStrategy,
+    unitEconomics,
   } = EDUMATCH_VALIDATION_DATA
 
   const getStatusBadge = (status: string) => {
@@ -106,6 +111,16 @@ export const CebtValidationDashboard: React.FC = () => {
             >
               <Presentation className="h-3.5 w-3.5 text-emerald-800 dark:text-slate-950" />
               <span>Pitch Claro (01-06)</span>
+            </button>
+            <button
+              type="button"
+              onClick={() => setActiveTab('finance')}
+              className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all flex items-center gap-1.5 ${
+                activeTab === 'finance' ? 'bg-unal-300 dark:bg-unal-500 text-slate-950 shadow-sm' : 'text-slate-200 hover:bg-white/10'
+              }`}
+            >
+              <PieChart className="h-3.5 w-3.5 text-emerald-800 dark:text-slate-950" />
+              <span>Cap Table & Finanzas</span>
             </button>
             <button
               type="button"
@@ -345,6 +360,254 @@ export const CebtValidationDashboard: React.FC = () => {
               </div>
             </CardContent>
           </Card>
+        </div>
+      )}
+
+      {/* Pestaña: CAP TABLE, FINANCIACIÓN Y ESTRUCTURA LEGAL (S.A.S.) */}
+      {activeTab === 'finance' && (
+        <div className="space-y-6 animate-fade-in">
+          {/* Banner de Estrategia */}
+          <div className="p-4 rounded-xl bg-surface-100 dark:bg-[#1A222C] border border-surface-200 dark:border-slate-800 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+            <div>
+              <div className="flex items-center gap-2 mb-1">
+                <Badge variant="lime" className="text-xs">
+                  {financialStrategy.roundType}
+                </Badge>
+                <span className="text-xs text-slate-500 dark:text-slate-400 font-semibold">
+                  Instrumento: {financialStrategy.investmentInstrument}
+                </span>
+              </div>
+              <h3 className="text-base font-black text-slate-900 dark:text-white">
+                Estrategia Financiera, Cap Table y Estructura S.A.S. (Ley 1258/08)
+              </h3>
+            </div>
+
+            <div className="text-right sm:shrink-0 bg-white dark:bg-[#161B22] p-2.5 rounded-lg border border-surface-200 dark:border-slate-800">
+              <span className="text-[10px] text-slate-400 uppercase font-bold block">Runway Proyectado</span>
+              <span className="text-lg font-black text-unal-700 dark:text-unal-400">
+                {financialStrategy.runwayMonths} Meses
+              </span>
+            </div>
+          </div>
+
+          {/* Métricas Unit Economics (Slide 3 & Slide 9) */}
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 text-center">
+            <Card className="border-surface-200 dark:border-slate-800 bg-white dark:bg-[#1E232B] p-3.5 space-y-1">
+              <span className="text-[10px] font-bold text-slate-400 uppercase">CAC (Adquisición)</span>
+              <div className="text-lg font-black text-slate-900 dark:text-white">
+                ${unitEconomics.cacCop.toLocaleString('es-CO')}
+              </div>
+              <span className="text-[10px] text-slate-500 dark:text-slate-400 block">Stands Minas + Redes</span>
+            </Card>
+
+            <Card className="border-surface-200 dark:border-slate-800 bg-white dark:bg-[#1E232B] p-3.5 space-y-1">
+              <span className="text-[10px] font-bold text-slate-400 uppercase">LTV (Vida Cliente)</span>
+              <div className="text-lg font-black text-slate-900 dark:text-white">
+                ${unitEconomics.ltvCop.toLocaleString('es-CO')}
+              </div>
+              <span className="text-[10px] text-slate-500 dark:text-slate-400 block">3.7 matches / semestre</span>
+            </Card>
+
+            <Card className="border-surface-200 dark:border-slate-800 bg-white dark:bg-[#1E232B] p-3.5 space-y-1 border-l-4 border-l-emerald-600">
+              <span className="text-[10px] font-bold text-emerald-700 dark:text-emerald-400 uppercase">LTV / CAC</span>
+              <div className="text-lg font-black text-emerald-700 dark:text-emerald-400">
+                {unitEconomics.ltvCacRatio}x
+              </div>
+              <span className="text-[10px] text-slate-500 dark:text-slate-400 block">Ideal &gt; 3x (Cumplido)</span>
+            </Card>
+
+            <Card className="border-surface-200 dark:border-slate-800 bg-white dark:bg-[#1E232B] p-3.5 space-y-1">
+              <span className="text-[10px] font-bold text-slate-400 uppercase">Crecimiento MoM</span>
+              <div className="text-lg font-black text-slate-900 dark:text-white">
+                {unitEconomics.momGrowthTarget}%
+              </div>
+              <span className="text-[10px] text-slate-500 dark:text-slate-400 block">Meta &gt; 15% mensual</span>
+            </Card>
+
+            <Card className="border-surface-200 dark:border-slate-800 bg-white dark:bg-[#1E232B] p-3.5 space-y-1">
+              <span className="text-[10px] font-bold text-slate-400 uppercase">Retención M1</span>
+              <div className="text-lg font-black text-slate-900 dark:text-white">
+                {unitEconomics.retentionRateMonth1}%
+              </div>
+              <span className="text-[10px] text-slate-500 dark:text-slate-400 block">Repite para 2do parcial</span>
+            </Card>
+
+            <Card className="border-surface-200 dark:border-slate-800 bg-white dark:bg-[#1E232B] p-3.5 space-y-1">
+              <span className="text-[10px] font-bold text-slate-400 uppercase">Burn Multiple</span>
+              <div className="text-lg font-black text-slate-900 dark:text-white">
+                {unitEconomics.burnMultipleTarget}x
+              </div>
+              <span className="text-[10px] text-slate-500 dark:text-slate-400 block">Alta eficiencia de capital</span>
+            </Card>
+          </div>
+
+          {/* Tabla de Cap Table (Slide 7) */}
+          <Card className="border-surface-200 dark:border-slate-800 bg-white dark:bg-[#1E232B] shadow-subtle overflow-hidden">
+            <div className="p-4 border-b border-surface-100 dark:border-slate-800 flex items-center justify-between">
+              <div className="flex items-center gap-2">
+                <PieChart className="h-4 w-4 text-unal-700 dark:text-unal-400" />
+                <h4 className="text-sm font-extrabold text-slate-900 dark:text-white">
+                  Cap Table & Simulación de Dilución (Pre-Ronda vs Post-Ronda)
+                </h4>
+              </div>
+              <Badge variant="outline" className="text-xs">
+                Valuación Post-Money: COP ${financialStrategy.postMoneyValuationCop.toLocaleString('es-CO')}
+              </Badge>
+            </div>
+
+            <div className="overflow-x-auto">
+              <table className="w-full text-xs text-left">
+                <thead className="bg-surface-50 dark:bg-[#171B21] text-slate-500 dark:text-slate-400 uppercase font-bold text-[10px] border-b border-surface-200 dark:border-slate-800">
+                  <tr>
+                    <th className="p-3.5">Accionista / Rol</th>
+                    <th className="p-3.5 text-center">Part. Pre-Ronda</th>
+                    <th className="p-3.5 text-center">Inversión (COP)</th>
+                    <th className="p-3.5 text-center">Part. Post-Ronda</th>
+                    <th className="p-3.5">Detalle y Cláusula de Control</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-surface-100 dark:divide-slate-800">
+                  {financialStrategy.capTable.map((item) => (
+                    <tr key={item.stakeholder} className="hover:bg-surface-50/50 dark:hover:bg-slate-800/40">
+                      <td className="p-3.5 font-bold text-slate-900 dark:text-white">
+                        {item.stakeholder}
+                      </td>
+                      <td className="p-3.5 text-center font-semibold text-slate-600 dark:text-slate-300">
+                        {item.preRoundShare.toFixed(1)}%
+                      </td>
+                      <td className="p-3.5 text-center font-bold text-unal-700 dark:text-unal-400">
+                        {item.investmentCop > 0 ? `$${item.investmentCop.toLocaleString('es-CO')}` : '-'}
+                      </td>
+                      <td className="p-3.5 text-center font-extrabold text-slate-900 dark:text-white">
+                        {item.postRoundShare.toFixed(1)}%
+                      </td>
+                      <td className="p-3.5 text-slate-500 dark:text-slate-400">
+                        {item.roleNote}
+                      </td>
+                    </tr>
+                  ))}
+                  <tr className="bg-surface-50 dark:bg-[#161B21] font-black text-slate-900 dark:text-white">
+                    <td className="p-3.5 uppercase">TOTAL</td>
+                    <td className="p-3.5 text-center">100.0%</td>
+                    <td className="p-3.5 text-center text-unal-700 dark:text-unal-400">
+                      ${financialStrategy.investmentTargetCop.toLocaleString('es-CO')}
+                    </td>
+                    <td className="p-3.5 text-center">100.0%</td>
+                    <td className="p-3.5 text-emerald-700 dark:text-emerald-400 font-bold">
+                      Pre-Money: ${financialStrategy.preMoneyValuationCop.toLocaleString('es-CO')} · Dilución: 20%
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </Card>
+
+          {/* Uso de Fondos (Slide 7) y Estructura Legal SAS (Slide 6) */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {/* Uso de Fondos */}
+            <Card className="border-surface-200 dark:border-slate-800 bg-white dark:bg-[#1E232B] p-5 space-y-4">
+              <div className="flex items-center gap-2">
+                <DollarSign className="h-4 w-4 text-unal-700 dark:text-unal-400" />
+                <h4 className="text-sm font-extrabold text-slate-900 dark:text-white">
+                  Uso Estratégico de Fondos (COP ${financialStrategy.investmentTargetCop.toLocaleString('es-CO')})
+                </h4>
+              </div>
+
+              <div className="space-y-3 text-xs">
+                <div className="space-y-1">
+                  <div className="flex justify-between font-bold text-slate-800 dark:text-slate-200">
+                    <span>40% Desarrollo de Producto & Algoritmo</span>
+                    <span>${(financialStrategy.investmentTargetCop * 0.4).toLocaleString('es-CO')}</span>
+                  </div>
+                  <div className="h-2 rounded-full bg-surface-100 dark:bg-slate-800 overflow-hidden">
+                    <div className="h-full bg-unal-700 w-[40%]" />
+                  </div>
+                  <p className="text-[11px] text-slate-500 dark:text-slate-400">
+                    Automatización de emparejamiento, pasarela Wompi y sistema de reemplazos 24/7.
+                  </p>
+                </div>
+
+                <div className="space-y-1">
+                  <div className="flex justify-between font-bold text-slate-800 dark:text-slate-200">
+                    <span>30% Marketing & CAC en Campus</span>
+                    <span>${(financialStrategy.investmentTargetCop * 0.3).toLocaleString('es-CO')}</span>
+                  </div>
+                  <div className="h-2 rounded-full bg-surface-100 dark:bg-slate-800 overflow-hidden">
+                    <div className="h-full bg-emerald-600 w-[30%]" />
+                  </div>
+                  <p className="text-[11px] text-slate-500 dark:text-slate-400">
+                    Stands en Bloques M1 y M8, material impreso y campañas segmentadas en semana de parciales.
+                  </p>
+                </div>
+
+                <div className="space-y-1">
+                  <div className="flex justify-between font-bold text-slate-800 dark:text-slate-200">
+                    <span>20% Operaciones & Red Docente</span>
+                    <span>${(financialStrategy.investmentTargetCop * 0.2).toLocaleString('es-CO')}</span>
+                  </div>
+                  <div className="h-2 rounded-full bg-surface-100 dark:bg-slate-800 overflow-hidden">
+                    <div className="h-full bg-amber-500 w-[20%]" />
+                  </div>
+                  <p className="text-[11px] text-slate-500 dark:text-slate-400">
+                    Reclutamiento, verificación de notas UNAL y capacitación pedagógica para 40 tutores.
+                  </p>
+                </div>
+
+                <div className="space-y-1">
+                  <div className="flex justify-between font-bold text-slate-800 dark:text-slate-200">
+                    <span>10% Reserva Legal & Imprevistos</span>
+                    <span>${(financialStrategy.investmentTargetCop * 0.1).toLocaleString('es-CO')}</span>
+                  </div>
+                  <div className="h-2 rounded-full bg-surface-100 dark:bg-slate-800 overflow-hidden">
+                    <div className="h-full bg-slate-500 w-[10%]" />
+                  </div>
+                  <p className="text-[11px] text-slate-500 dark:text-slate-400">
+                    Constitución SAS, acuerdos de accionistas, registro de marca y contingencias.
+                  </p>
+                </div>
+              </div>
+            </Card>
+
+            {/* Estructura Societaria SAS (Ley 1258/08) */}
+            <Card className="border-surface-200 dark:border-slate-800 bg-white dark:bg-[#1E232B] p-5 space-y-4">
+              <div className="flex items-center gap-2">
+                <Scale className="h-4 w-4 text-unal-700 dark:text-unal-400" />
+                <h4 className="text-sm font-extrabold text-slate-900 dark:text-white">
+                  Gobernanza y Vehículo Legal: S.A.S. (Ley 1258/08)
+                </h4>
+              </div>
+
+              <div className="space-y-2.5 text-xs">
+                <div className="p-3 rounded-lg bg-surface-50 dark:bg-[#171B21] border border-surface-200/60 dark:border-slate-800 space-y-1">
+                  <span className="font-bold text-slate-900 dark:text-white block">
+                    Tipos de Acciones Adoptadas:
+                  </span>
+                  <ul className="space-y-1 text-slate-600 dark:text-slate-400 text-[11px]">
+                    {financialStrategy.shareTypes.map((st) => (
+                      <li key={st} className="flex items-start gap-1.5">
+                        <CheckCircle2 className="h-3.5 w-3.5 text-unal-700 dark:text-unal-400 shrink-0 mt-0.5" />
+                        <span>{st}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                <div className="p-3 rounded-lg bg-surface-50 dark:bg-[#171B21] border border-surface-200/60 dark:border-slate-800 space-y-1">
+                  <span className="font-bold text-slate-900 dark:text-white block">
+                    Pactos de Accionistas & Control:
+                  </span>
+                  <ul className="space-y-1 text-slate-600 dark:text-slate-400 text-[11px]">
+                    {financialStrategy.governancePacts.map((gp) => (
+                      <li key={gp} className="flex items-start gap-1.5">
+                        <CheckCircle2 className="h-3.5 w-3.5 text-emerald-700 dark:text-emerald-400 shrink-0 mt-0.5" />
+                        <span>{gp}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            </Card>
+          </div>
         </div>
       )}
 
