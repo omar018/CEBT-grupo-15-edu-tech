@@ -53,7 +53,7 @@ export const ProfessorDetailModal: React.FC<ProfessorDetailModalProps> = ({
     >
       <div className="space-y-6">
         {/* Banner de Afinidad */}
-        <div className="flex flex-wrap items-center justify-between gap-4 p-4 rounded-xl bg-gradient-to-r from-unal-900 via-unal-800 to-unal-700 text-white">
+        <div className="flex flex-wrap items-center justify-between gap-4 p-4 rounded-xl bg-gradient-to-r from-unal-950 via-unal-900 to-unal-800 text-white">
           <div>
             <span className="text-xs font-semibold text-unal-300 uppercase tracking-wider">
               Índice de Compatibilidad
@@ -86,14 +86,14 @@ export const ProfessorDetailModal: React.FC<ProfessorDetailModalProps> = ({
 
         {/* Comparativa dimensión por dimensión */}
         <div className="space-y-3">
-          <div className="flex items-center justify-between text-xs font-bold uppercase tracking-wider text-slate-700 pb-1 border-b border-surface-200">
+          <div className="flex items-center justify-between text-xs font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300 pb-1 border-b border-surface-200 dark:border-slate-800">
             <span>Dimensión Pedagógica</span>
             <div className="flex items-center gap-4 text-[11px]">
-              <span className="flex items-center gap-1.5 text-unal-700">
+              <span className="flex items-center gap-1.5 text-unal-700 dark:text-unal-400">
                 <span className="h-2 w-2 rounded-full bg-unal-600 inline-block" />
                 Docente
               </span>
-              <span className="flex items-center gap-1.5 text-slate-600">
+              <span className="flex items-center gap-1.5 text-slate-600 dark:text-slate-400">
                 <span className="h-2 w-2 rounded-full bg-slate-400 inline-block" />
                 Tu Perfil
               </span>
@@ -107,16 +107,16 @@ export const ProfessorDetailModal: React.FC<ProfessorDetailModalProps> = ({
 
               return (
                 <div key={axis.key} className="space-y-1">
-                  <div className="flex justify-between text-xs font-semibold text-slate-800">
+                  <div className="flex justify-between text-xs font-semibold text-slate-800 dark:text-slate-200">
                     <span>{axis.label}</span>
-                    <span className="text-slate-500 text-[11px]">
-                      Doc: <strong className="text-unal-800">{profVal}%</strong> | Tú:{' '}
+                    <span className="text-slate-500 dark:text-slate-400 text-[11px]">
+                      Doc: <strong className="text-unal-800 dark:text-unal-400">{profVal}%</strong> | Tú:{' '}
                       <strong>{studVal}%</strong>
                     </span>
                   </div>
                   <div className="space-y-1">
-                    <Progress value={profVal} indicatorClassName="bg-unal-700 h-2" />
-                    <Progress value={studVal} indicatorClassName="bg-slate-400 h-1.5" />
+                    <Progress value={profVal} indicatorClassName="bg-unal-700 dark:bg-unal-500 h-2" />
+                    <Progress value={studVal} indicatorClassName="bg-slate-400 dark:bg-slate-600 h-1.5" />
                   </div>
                 </div>
               )
@@ -129,28 +129,28 @@ export const ProfessorDetailModal: React.FC<ProfessorDetailModalProps> = ({
           {breakdown.matchingHighlights.map((hl) => (
             <div
               key={hl}
-              className="flex items-start gap-2 p-2.5 rounded-lg bg-unal-50 text-xs font-medium text-unal-900 border border-unal-200"
+              className="flex items-start gap-2 p-2.5 rounded-lg bg-unal-50 dark:bg-unal-950/40 text-xs font-medium text-unal-900 dark:text-unal-200 border border-unal-200 dark:border-unal-800/60"
             >
-              <Check className="h-4 w-4 text-unal-700 shrink-0 mt-0.5" />
+              <Check className="h-4 w-4 text-unal-700 dark:text-unal-400 shrink-0 mt-0.5" />
               <span>{hl}</span>
             </div>
           ))}
 
           {breakdown.potentialFrictionWarning && (
-            <div className="flex items-start gap-2 p-2.5 rounded-lg bg-amber-50 text-xs font-medium text-amber-900 border border-amber-200">
-              <AlertTriangle className="h-4 w-4 text-amber-600 shrink-0 mt-0.5" />
+            <div className="flex items-start gap-2 p-2.5 rounded-lg bg-amber-50 dark:bg-amber-950/40 text-xs font-medium text-amber-900 dark:text-amber-200 border border-amber-200 dark:border-amber-800/60">
+              <AlertTriangle className="h-4 w-4 text-amber-600 dark:text-amber-400 shrink-0 mt-0.5" />
               <span>{breakdown.potentialFrictionWarning}</span>
             </div>
           )}
         </div>
 
         {/* Recursos preferidos y oficina UNAL */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs bg-surface-50 p-4 rounded-xl border border-surface-200">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs bg-surface-50 dark:bg-[#171B21] p-4 rounded-xl border border-surface-200 dark:border-slate-800">
           <div>
-            <span className="font-bold text-slate-700 block mb-1">
+            <span className="font-bold text-slate-700 dark:text-slate-300 block mb-1">
               Recursos de apoyo del docente:
             </span>
-            <ul className="list-disc list-inside text-slate-600 space-y-0.5">
+            <ul className="list-disc list-inside text-slate-600 dark:text-slate-400 space-y-0.5">
               {professor.teachingProfile.preferredMaterials.map((mat) => (
                 <li key={mat}>{mat}</li>
               ))}
@@ -158,10 +158,10 @@ export const ProfessorDetailModal: React.FC<ProfessorDetailModalProps> = ({
           </div>
 
           <div>
-            <span className="font-bold text-slate-700 block mb-1">
+            <span className="font-bold text-slate-700 dark:text-slate-300 block mb-1">
               Atención presencial / campus:
             </span>
-            <p className="text-slate-600">{professor.officeHours}</p>
+            <p className="text-slate-600 dark:text-slate-400">{professor.officeHours}</p>
           </div>
         </div>
 
@@ -179,7 +179,7 @@ export const ProfessorDetailModal: React.FC<ProfessorDetailModalProps> = ({
             className="shadow-sm font-semibold"
           >
             <Calendar className="h-4 w-4 mr-1.5" />
-            <span>Agendar Tutoría con este Docente</span>
+            <span>Agendar con Garantía Edumatch</span>
           </Button>
         </div>
       </div>

@@ -27,25 +27,26 @@
   }
 
   .dark {
-    --background: 155 50% 6%;
-    --foreground: 110 20% 96%;
-    --card: 155 40% 9%;
-    --card-foreground: 110 20% 96%;
-    --popover: 155 40% 9%;
-    --popover-foreground: 110 20% 96%;
-    --primary: 76 51% 47%;
-    --primary-foreground: 155 50% 6%;
-    --secondary: 152 70% 30%;
+    /* Fondo gris oscuro elegante (#14171B) y tarjetas gris grafito (#1E232A) */
+    --background: 215 15% 9%;
+    --foreground: 210 20% 96%;
+    --card: 216 16% 14%;
+    --card-foreground: 210 20% 96%;
+    --popover: 216 16% 14%;
+    --popover-foreground: 210 20% 96%;
+    --primary: 76 55% 50%;       /* #94B43B UNAL Lima brillante en oscuro */
+    --primary-foreground: 215 25% 10%;
+    --secondary: 152 65% 32%;
     --secondary-foreground: 0 0% 100%;
-    --muted: 155 25% 14%;
-    --muted-foreground: 120 10% 65%;
-    --accent: 76 51% 47%;
-    --accent-foreground: 155 50% 6%;
-    --destructive: 0 62% 30%;
+    --muted: 215 14% 18%;
+    --muted-foreground: 215 15% 65%;
+    --accent: 76 55% 50%;
+    --accent-foreground: 215 25% 10%;
+    --destructive: 0 62% 40%;
     --destructive-foreground: 0 0% 98%;
-    --border: 155 25% 16%;
-    --input: 155 25% 16%;
-    --ring: 76 51% 47%;
+    --border: 215 14% 20%;
+    --input: 215 14% 20%;
+    --ring: 76 55% 50%;
   }
 }
 
@@ -57,4 +58,10 @@ body {
   font-feature-settings: "cv02", "cv03", "cv04", "cv11";
   background-color: #F8FAF7;
   color: #111B15;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.dark body {
+  background-color: #14171B;
+  color: #E2E8F0;
 }

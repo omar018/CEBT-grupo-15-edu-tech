@@ -47,7 +47,7 @@ export const ProfessorFilters: React.FC<ProfessorFiltersProps> = ({
   onResetFilters,
 }) => {
   return (
-    <div className="bg-white p-4 rounded-xl border border-surface-200 shadow-subtle space-y-3">
+    <div className="bg-white dark:bg-[#1E232B] p-4 rounded-xl border border-surface-200 dark:border-slate-800 shadow-subtle space-y-3 transition-colors">
       <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3">
         {/* Barra de búsqueda */}
         <div className="relative flex-1">
@@ -56,19 +56,19 @@ export const ProfessorFilters: React.FC<ProfessorFiltersProps> = ({
             type="text"
             value={searchQuery}
             onChange={(e) => onSearchChange(e.target.value)}
-            placeholder="Buscar por asignatura (Cálculo, Física, Algoritmos) o nombre..."
-            className="w-full h-10 pl-9 pr-3 text-sm bg-surface-50 border border-surface-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-unal-700/30 focus:border-unal-700"
+            placeholder="Buscar por materia (Cálculo, Álgebra, Física, Programación)..."
+            className="w-full h-10 pl-9 pr-3 text-sm bg-surface-50 dark:bg-[#171B21] text-slate-900 dark:text-slate-100 border border-surface-200 dark:border-slate-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-unal-700/30 dark:focus:ring-unal-400/30 focus:border-unal-700"
           />
         </div>
 
         {/* Ordenamiento */}
         <div className="flex items-center gap-2 shrink-0">
-          <SlidersHorizontal className="h-4 w-4 text-slate-500" />
-          <span className="text-xs font-semibold text-slate-600 hidden sm:inline">Ordenar:</span>
+          <SlidersHorizontal className="h-4 w-4 text-slate-500 dark:text-slate-400" />
+          <span className="text-xs font-semibold text-slate-600 dark:text-slate-300 hidden sm:inline">Ordenar:</span>
           <select
             value={sortCriterion}
             onChange={(e) => onSortCriterionChange(e.target.value as SortCriterion)}
-            className="h-10 px-3 text-xs font-medium bg-surface-50 border border-surface-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-unal-700/30"
+            className="h-10 px-3 text-xs font-medium bg-surface-50 dark:bg-[#171B21] text-slate-900 dark:text-slate-100 border border-surface-200 dark:border-slate-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-unal-700/30"
           >
             <option value="matchScore">Mayor Afinidad (%)</option>
             <option value="rating">Mejor Calificación</option>
@@ -79,7 +79,7 @@ export const ProfessorFilters: React.FC<ProfessorFiltersProps> = ({
             variant="ghost"
             size="sm"
             onClick={onResetFilters}
-            className="h-10 text-xs text-slate-500 hover:text-slate-800"
+            className="h-10 text-xs text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-white"
             title="Restablecer filtros"
           >
             <RotateCcw className="h-3.5 w-3.5" />
@@ -88,15 +88,15 @@ export const ProfessorFilters: React.FC<ProfessorFiltersProps> = ({
       </div>
 
       {/* Filtros secundarios: Facultad, Modalidad y Score mínimo */}
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2 border-t border-surface-100">
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2 border-t border-surface-100 dark:border-slate-800">
         <div>
-          <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-500 mb-1">
+          <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1">
             Facultad UNAL
           </label>
           <select
             value={selectedFaculty}
             onChange={(e) => onFacultyChange(e.target.value as UnalFaculty | 'ALL')}
-            className="w-full h-9 px-2.5 text-xs bg-surface-50 border border-surface-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-unal-700/30"
+            className="w-full h-9 px-2.5 text-xs bg-surface-50 dark:bg-[#171B21] text-slate-900 dark:text-slate-100 border border-surface-200 dark:border-slate-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-unal-700/30"
           >
             <option value="ALL">Todas las facultades</option>
             {FACULTIES.filter((f) => f !== 'ALL').map((f) => (
@@ -108,13 +108,13 @@ export const ProfessorFilters: React.FC<ProfessorFiltersProps> = ({
         </div>
 
         <div>
-          <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-500 mb-1">
+          <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1">
             Modalidad
           </label>
           <select
             value={selectedModality}
             onChange={(e) => onModalityChange(e.target.value as Modality | 'ALL')}
-            className="w-full h-9 px-2.5 text-xs bg-surface-50 border border-surface-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-unal-700/30"
+            className="w-full h-9 px-2.5 text-xs bg-surface-50 dark:bg-[#171B21] text-slate-900 dark:text-slate-100 border border-surface-200 dark:border-slate-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-unal-700/30"
           >
             <option value="ALL">Cualquier modalidad</option>
             {MODALITIES.filter((m) => m !== 'ALL').map((m) => (
@@ -127,10 +127,10 @@ export const ProfessorFilters: React.FC<ProfessorFiltersProps> = ({
 
         <div>
           <div className="flex justify-between items-center mb-1">
-            <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-500">
+            <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">
               Afinidad mínima
             </label>
-            <span className="text-xs font-bold text-unal-700">{minMatchScore}%</span>
+            <span className="text-xs font-bold text-unal-700 dark:text-unal-400">{minMatchScore}%</span>
           </div>
           <input
             type="range"
@@ -139,7 +139,7 @@ export const ProfessorFilters: React.FC<ProfessorFiltersProps> = ({
             step="5"
             value={minMatchScore}
             onChange={(e) => onMinMatchScoreChange(Number(e.target.value))}
-            className="w-full h-2 bg-surface-200 rounded-lg appearance-none cursor-pointer accent-unal-700"
+            className="w-full h-2 bg-surface-200 dark:bg-slate-700 rounded-lg appearance-none cursor-pointer accent-unal-700 dark:accent-unal-400"
           />
         </div>
       </div>

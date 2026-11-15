@@ -28,9 +28,9 @@ export const StudentMetadataForm: React.FC<StudentMetadataFormProps> = ({
   onSemesterChange,
 }) => {
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 p-4 bg-surface-100/70 border border-surface-200 rounded-xl mb-6">
+    <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 p-4 bg-surface-100/70 dark:bg-[#171B21] border border-surface-200 dark:border-slate-800 rounded-xl mb-6 transition-colors">
       <div>
-        <label htmlFor="student-name-input" className="block text-xs font-semibold text-slate-700 mb-1">
+        <label htmlFor="student-name-input" className="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">
           Nombre o seudónimo del estudiante
         </label>
         <input
@@ -39,19 +39,19 @@ export const StudentMetadataForm: React.FC<StudentMetadataFormProps> = ({
           value={studentName}
           onChange={(e) => onNameChange(e.target.value)}
           placeholder="Ej: Daniel Morales"
-          className="w-full h-9 px-3 text-sm bg-white border border-surface-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-unal-700/30 focus:border-unal-700"
+          className="w-full h-9 px-3 text-sm bg-white dark:bg-[#1E232B] text-slate-900 dark:text-slate-100 border border-surface-300 dark:border-slate-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-unal-700/30 focus:border-unal-700"
         />
       </div>
 
       <div>
-        <label htmlFor="faculty-select" className="block text-xs font-semibold text-slate-700 mb-1">
+        <label htmlFor="faculty-select" className="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">
           Facultad (Sede UNAL)
         </label>
         <select
           id="faculty-select"
           value={faculty}
           onChange={(e) => onFacultyChange(e.target.value)}
-          className="w-full h-9 px-3 text-sm bg-white border border-surface-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-unal-700/30 focus:border-unal-700"
+          className="w-full h-9 px-3 text-sm bg-white dark:bg-[#1E232B] text-slate-900 dark:text-slate-100 border border-surface-300 dark:border-slate-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-unal-700/30 focus:border-unal-700"
         >
           {UNAL_FACULTIES.map((fac) => (
             <option key={fac} value={fac}>
@@ -62,14 +62,14 @@ export const StudentMetadataForm: React.FC<StudentMetadataFormProps> = ({
       </div>
 
       <div>
-        <label htmlFor="semester-select" className="block text-xs font-semibold text-slate-700 mb-1">
+        <label htmlFor="semester-select" className="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">
           Semestre actual
         </label>
         <select
           id="semester-select"
           value={semester}
           onChange={(e) => onSemesterChange(Number(e.target.value))}
-          className="w-full h-9 px-3 text-sm bg-white border border-surface-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-unal-700/30 focus:border-unal-700"
+          className="w-full h-9 px-3 text-sm bg-white dark:bg-[#1E232B] text-slate-900 dark:text-slate-100 border border-surface-300 dark:border-slate-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-unal-700/30 focus:border-unal-700"
         >
           {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((sem) => (
             <option key={sem} value={sem}>

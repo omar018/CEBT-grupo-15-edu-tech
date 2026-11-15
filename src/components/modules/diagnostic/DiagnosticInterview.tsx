@@ -53,19 +53,19 @@ export const DiagnosticInterview: React.FC<DiagnosticInterviewProps> = ({
 
   return (
     <div className="space-y-6">
-      <Card className="border-surface-200 shadow-subtle overflow-hidden">
-        <CardHeader className="bg-surface-50 border-b border-surface-200 pb-4">
+      <Card className="border-surface-200 dark:border-slate-800 shadow-subtle overflow-hidden">
+        <CardHeader className="bg-surface-50 dark:bg-[#171B21] border-b border-surface-200 dark:border-slate-800 pb-4 transition-colors">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-2">
             <div>
               <div className="flex items-center gap-2 mb-1">
                 <Badge variant="unal" className="text-xs">
-                  Entrevista de Diagnóstico Cognitivo
+                  Entrevista de Diagnóstico Express (&lt; 5 min)
                 </Badge>
-                <span className="text-xs font-semibold text-slate-500">
+                <span className="text-xs font-semibold text-slate-500 dark:text-slate-400">
                   Paso {currentStepIndex + 1} de {totalSteps}
                 </span>
               </div>
-              <CardTitle className="text-xl font-extrabold text-slate-900">
+              <CardTitle className="text-xl font-extrabold text-slate-900 dark:text-slate-100">
                 {currentQuestion.title}
               </CardTitle>
             </div>
@@ -74,7 +74,7 @@ export const DiagnosticInterview: React.FC<DiagnosticInterviewProps> = ({
               variant="ghost"
               size="sm"
               onClick={handleResetDiagnostic}
-              className="text-slate-500 hover:text-slate-800 self-start sm:self-auto"
+              className="text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-white self-start sm:self-auto"
             >
               <RefreshCw className="h-3.5 w-3.5 mr-1" />
               Reiniciar
@@ -82,16 +82,15 @@ export const DiagnosticInterview: React.FC<DiagnosticInterviewProps> = ({
           </div>
 
           <div className="space-y-1">
-            <div className="flex justify-between text-xs text-slate-500 font-medium">
+            <div className="flex justify-between text-xs text-slate-500 dark:text-slate-400 font-medium">
               <span>Progreso de deducción</span>
               <span>{progressPercent}%</span>
             </div>
-            <Progress value={progressPercent} indicatorClassName="bg-unal-700" />
+            <Progress value={progressPercent} indicatorClassName="bg-unal-700 dark:bg-unal-500" />
           </div>
         </CardHeader>
 
         <CardContent className="p-6">
-          {/* Formulario de estudiante */}
           {currentStepIndex === 0 && (
             <StudentMetadataForm
               studentName={studentName}
@@ -103,15 +102,13 @@ export const DiagnosticInterview: React.FC<DiagnosticInterviewProps> = ({
             />
           )}
 
-          {/* Pregunta activa */}
           <DiagnosticStepCard
             question={currentQuestion}
             selectedOption={currentAnswer}
             onSelectOption={handleSelectOption}
           />
 
-          {/* Barra de navegación de pasos */}
-          <div className="mt-8 pt-4 border-t border-surface-100 flex items-center justify-between gap-3">
+          <div className="mt-8 pt-4 border-t border-surface-100 dark:border-slate-800 flex items-center justify-between gap-3">
             <Button
               variant="secondary"
               onClick={handlePreviousStep}
@@ -127,7 +124,7 @@ export const DiagnosticInterview: React.FC<DiagnosticInterviewProps> = ({
               disabled={!currentAnswer}
               className="shadow-sm"
             >
-              <span>{currentStepIndex === totalSteps - 1 ? 'Finalizar y Deducir Perfil' : 'Siguiente Paso'}</span>
+              <span>{currentStepIndex === totalSteps - 1 ? 'Finalizar y Ver La Criba' : 'Siguiente Paso'}</span>
               {currentStepIndex === totalSteps - 1 ? (
                 <CheckCircle className="h-4 w-4" />
               ) : (

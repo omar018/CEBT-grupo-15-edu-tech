@@ -39,7 +39,7 @@ export const ProfileSummaryCard: React.FC<ProfileSummaryCardProps> = ({
   const PrimaryIcon = sensoryIcons[profile.primarySensory]
 
   return (
-    <Card className="border-unal-700/20 bg-gradient-to-b from-white to-unal-50/30 overflow-hidden shadow-elevated">
+    <Card className="border-unal-700/20 dark:border-slate-800 bg-gradient-to-b from-white to-unal-50/30 dark:from-[#1E232B] dark:to-[#171B21] overflow-hidden shadow-elevated">
       {/* Banner superior de perfil */}
       <div className="bg-gradient-to-r from-unal-800 via-unal-700 to-unal-600 px-6 py-4 text-white flex flex-wrap items-center justify-between gap-3">
         <div className="flex items-center gap-3">
@@ -48,7 +48,7 @@ export const ProfileSummaryCard: React.FC<ProfileSummaryCardProps> = ({
           </div>
           <div>
             <span className="text-xs font-semibold text-unal-200 tracking-wider uppercase">
-              Diagnóstico Pedagógico UNAL
+              Diagnóstico Pedagógico Edumatch
             </span>
             <h3 className="text-lg font-bold text-white tracking-tight">
               Perfil: {sensoryTitles[profile.primarySensory]}
@@ -64,20 +64,20 @@ export const ProfileSummaryCard: React.FC<ProfileSummaryCardProps> = ({
       <CardContent className="p-6 space-y-6">
         {/* Arquetipo Kolb e interacción */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div className="p-4 rounded-xl bg-surface-100/80 border border-surface-200">
-            <span className="text-xs font-bold text-slate-500 uppercase tracking-wider block mb-1">
+          <div className="p-4 rounded-xl bg-surface-100/80 dark:bg-[#171B21] border border-surface-200 dark:border-slate-800">
+            <span className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider block mb-1">
               Estilo Cognitivo (Ciclo de Kolb)
             </span>
-            <p className="text-sm font-bold text-slate-900">
+            <p className="text-sm font-bold text-slate-900 dark:text-slate-100">
               {kolbLabels[profile.kolbStyle]}
             </p>
           </div>
 
-          <div className="p-4 rounded-xl bg-surface-100/80 border border-surface-200">
-            <span className="text-xs font-bold text-slate-500 uppercase tracking-wider block mb-1">
+          <div className="p-4 rounded-xl bg-surface-100/80 dark:bg-[#171B21] border border-surface-200 dark:border-slate-800">
+            <span className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider block mb-1">
               Dinámica de Tutoría Recomendada
             </span>
-            <p className="text-sm font-bold text-slate-900">
+            <p className="text-sm font-bold text-slate-900 dark:text-slate-100">
               {profile.interactionStyle === 'socratic'
                 ? 'Mayéutica Socrática (Pregunta guiada y descubrimiento reflexivo)'
                 : profile.interactionStyle === 'project_based'
@@ -89,56 +89,56 @@ export const ProfileSummaryCard: React.FC<ProfileSummaryCardProps> = ({
 
         {/* Desglose de 6 dimensiones */}
         <div className="space-y-3">
-          <h4 className="text-xs font-bold uppercase tracking-wider text-slate-700 flex items-center gap-2">
-            <Brain className="h-4 w-4 text-unal-700" />
+          <h4 className="text-xs font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300 flex items-center gap-2">
+            <Brain className="h-4 w-4 text-unal-700 dark:text-unal-400" />
             <span>Distribución de Canales de Asimilación (% afinidad cognitiva)</span>
           </h4>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-3">
             <div>
               <div className="flex justify-between text-xs font-medium mb-1">
-                <span className="text-slate-600">Canal Visual / Diagramático</span>
-                <span className="font-bold text-slate-900">{profile.dimensions.visual}%</span>
+                <span className="text-slate-600 dark:text-slate-400">Canal Visual / Diagramático</span>
+                <span className="font-bold text-slate-900 dark:text-slate-100">{profile.dimensions.visual}%</span>
               </div>
               <Progress value={profile.dimensions.visual} indicatorClassName="bg-unal-600" />
             </div>
 
             <div>
               <div className="flex justify-between text-xs font-medium mb-1">
-                <span className="text-slate-600">Canal Auditivo / Dialéctico</span>
-                <span className="font-bold text-slate-900">{profile.dimensions.auditory}%</span>
+                <span className="text-slate-600 dark:text-slate-400">Canal Auditivo / Dialéctico</span>
+                <span className="font-bold text-slate-900 dark:text-slate-100">{profile.dimensions.auditory}%</span>
               </div>
               <Progress value={profile.dimensions.auditory} indicatorClassName="bg-unal-500" />
             </div>
 
             <div>
               <div className="flex justify-between text-xs font-medium mb-1">
-                <span className="text-slate-600">Canal Kinestésico / Experimental</span>
-                <span className="font-bold text-slate-900">{profile.dimensions.kinesthetic}%</span>
+                <span className="text-slate-600 dark:text-slate-400">Canal Kinestésico / Experimental</span>
+                <span className="font-bold text-slate-900 dark:text-slate-100">{profile.dimensions.kinesthetic}%</span>
               </div>
               <Progress value={profile.dimensions.kinesthetic} indicatorClassName="bg-unal-400" />
             </div>
 
             <div>
               <div className="flex justify-between text-xs font-medium mb-1">
-                <span className="text-slate-600">Abstracción Teórica</span>
-                <span className="font-bold text-slate-900">{profile.dimensions.theoretical}%</span>
+                <span className="text-slate-600 dark:text-slate-400">Abstracción Teórica</span>
+                <span className="font-bold text-slate-900 dark:text-slate-100">{profile.dimensions.theoretical}%</span>
               </div>
               <Progress value={profile.dimensions.theoretical} indicatorClassName="bg-emerald-700" />
             </div>
 
             <div>
               <div className="flex justify-between text-xs font-medium mb-1">
-                <span className="text-slate-600">Resolución Práctica de Problemas</span>
-                <span className="font-bold text-slate-900">{profile.dimensions.practical}%</span>
+                <span className="text-slate-600 dark:text-slate-400">Resolución Práctica de Problemas</span>
+                <span className="font-bold text-slate-900 dark:text-slate-100">{profile.dimensions.practical}%</span>
               </div>
               <Progress value={profile.dimensions.practical} indicatorClassName="bg-lime-600" />
             </div>
 
             <div>
               <div className="flex justify-between text-xs font-medium mb-1">
-                <span className="text-slate-600">Autonomía y Autogestión</span>
-                <span className="font-bold text-slate-900">{profile.dimensions.autonomy}%</span>
+                <span className="text-slate-600 dark:text-slate-400">Autonomía y Autogestión</span>
+                <span className="font-bold text-slate-900 dark:text-slate-100">{profile.dimensions.autonomy}%</span>
               </div>
               <Progress value={profile.dimensions.autonomy} indicatorClassName="bg-amber-600" />
             </div>
@@ -146,29 +146,29 @@ export const ProfileSummaryCard: React.FC<ProfileSummaryCardProps> = ({
         </div>
 
         {/* Rasgos y recomendación */}
-        <div className="p-4 rounded-xl bg-white border border-surface-200">
-          <p className="text-xs font-semibold text-slate-700 mb-2">Rasgos pedagógicos clave:</p>
+        <div className="p-4 rounded-xl bg-white dark:bg-[#171B21] border border-surface-200 dark:border-slate-800">
+          <p className="text-xs font-semibold text-slate-700 dark:text-slate-300 mb-2">Rasgos pedagógicos clave:</p>
           <div className="flex flex-wrap gap-1.5 mb-3">
             {profile.keyTraits.map((trait) => (
               <Badge key={trait} variant="unal" className="text-xs">
-                <Check className="h-3 w-3 mr-1 text-unal-700" />
+                <Check className="h-3 w-3 mr-1 text-unal-700 dark:text-unal-400" />
                 {trait}
               </Badge>
             ))}
           </div>
-          <p className="text-xs text-slate-600 italic">
+          <p className="text-xs text-slate-600 dark:text-slate-400 italic">
             "{profile.recommendedEnvironment}"
           </p>
         </div>
 
         {/* Acciones */}
         <div className="flex flex-col sm:flex-row items-center justify-between gap-3 pt-2">
-          <Button variant="ghost" size="sm" onClick={onRetakeDiagnostic}>
-            Repetir entrevista diagnóstica
+          <Button variant="ghost" size="sm" onClick={onRetakeDiagnostic} className="dark:text-slate-300 dark:hover:text-white">
+            Repetir diagnóstico express
           </Button>
 
           <Button variant="default" size="lg" onClick={onExploreMatches} className="w-full sm:w-auto">
-            <span>Ver Profesores UNAL Compatibles</span>
+            <span>Ver La Criba (Top 3 Sugerencias)</span>
             <ArrowRight className="h-4 w-4" />
           </Button>
         </div>
