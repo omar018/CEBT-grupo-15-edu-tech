@@ -1,5 +1,5 @@
 import React from 'react'
-import { Compass, Sparkles, BookOpen, Presentation, Zap, Sun, Moon } from 'lucide-react'
+import { Compass, Sparkles, BookOpen, Zap, Sun, Moon } from 'lucide-react'
 import { cn } from '../../lib/utils'
 
 export type ActiveView = 'diagnostic' | 'matcher' | 'booking' | 'cebt'
@@ -22,7 +22,7 @@ export const Navbar: React.FC<NavbarProps> = ({
   const navItems = [
     {
       id: 'diagnostic' as const,
-      label: 'Diagnóstico',
+      label: 'Diagnóstico (< 5 min)',
       icon: Compass,
     },
     {
@@ -32,13 +32,8 @@ export const Navbar: React.FC<NavbarProps> = ({
     },
     {
       id: 'booking' as const,
-      label: 'Tutorías y Garantías',
+      label: 'Mis Tutorías & Garantías',
       icon: BookOpen,
-    },
-    {
-      id: 'cebt' as const,
-      label: 'Validación CEBT',
-      icon: Presentation,
     },
   ]
 
@@ -59,7 +54,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             <span className="h-4 w-px bg-surface-200 dark:bg-slate-700 hidden sm:block" />
 
             <span className="hidden sm:inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-medium text-slate-600 dark:text-slate-400 bg-surface-100 dark:bg-slate-800/80 border border-surface-200 dark:border-slate-700/60">
-              UNAL · Grupo 15
+              UNAL · Sede Medellín
             </span>
           </div>
         </div>
