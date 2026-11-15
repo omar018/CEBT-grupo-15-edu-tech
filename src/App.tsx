@@ -6,23 +6,64 @@ import { DiagnosticInterview } from './components/modules/diagnostic/DiagnosticI
 import { ProfessorMatcher } from './components/modules/matcher/ProfessorMatcher'
 import { BookingModal } from './components/modules/booking/BookingModal'
 import { BookedSessionsList } from './components/modules/booking/BookedSessionsList'
+import { StudentIdentityModal } from './components/modules/auth/StudentIdentityModal'
+import { useStudentIdentity } from './hooks/useStudentIdentity'
 import { useDiagnostic } from './hooks/useDiagnostic'
 import { useProfessorMatcher } from './hooks/useProfessorMatcher'
 import { useBooking } from './hooks/useBooking'
 import { useTheme } from './hooks/useTheme'
 import type { MatchedProfessor } from './types/professor'
+import { DEMO_STUDENTS } from './data/demo-students'
 import { Zap, ShieldCheck, Clock } from 'lucide-react'
 
 export function App() {
   const [activeView, setActiveView] = useState<ActiveView>('diagnostic')
   const { theme, toggleTheme } = useTheme()
 
-  const diagnosticState = useDiagnostic('Estudiante UNAL')
+  const {
+    currentStudent,
+    isIdentityModalOpen,
+    openIdentityModal,
+    closeIdentityModal,
+    selectDemoStudent,
+    loginWithUnalEmail,
+  } = useStudentIdentity()
+
+  const diagnosticState = useDiagnostic(currentStudent)
   const matcherState = useProfessorMatcher(diagnosticState.deducedProfile)
   const bookingState = useBooking()
 
   const [selectedMatchForBooking, setSelectedMatchForBooking] = useState<MatchedProfessor | null>(null)
   const [isBookingModalOpen, setIsBookingModalOpen] = useState(false)
+
+  const handleSelectDemo = (demoId: string) => {
+    selectDemoStudent(demoId)
+    const found = DEMO_STUDENTS.find((s) => s.id === demoId)
+    if (found) {
+      diagnosticState.loadStudentIdentity(found)
+    }
+  }
+
+  const handleLoginWithUnal = (
+    name: string,
+    email: string,
+    program: string,
+    semester: number
+  ) => {
+    const res = loginWithUnalEmail(name, email, program, semester)
+    if (res.success) {
+      diagnosticState.loadStudentIdentity({
+        id: `unal-${Date.now()}`,
+        name,
+        email,
+        program,
+        faculty: 'Facultad de Minas',
+        semester,
+        isDemo: false,
+      })
+    }
+    return res
+  }
 
   const handleOpenBookingModal = (match: MatchedProfessor) => {
     setSelectedMatchForBooking(match)
@@ -57,6 +98,8 @@ export function App() {
         matchCount={matcherState.filteredMatches.length}
         theme={theme}
         onToggleTheme={toggleTheme}
+        currentStudent={currentStudent}
+        onOpenIdentityModal={openIdentityModal}
       />
 
       <main className="flex-1 mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 py-8">
@@ -119,6 +162,14 @@ export function App() {
         isOpen={isBookingModalOpen}
         onClose={handleCloseBookingModal}
         onConfirm={handleBookingConfirmed}
+      />
+
+      <StudentIdentityModal
+        isOpen={isIdentityModalOpen}
+        onClose={closeIdentityModal}
+        currentStudent={currentStudent}
+        onSelectDemo={handleSelectDemo}
+        onLoginWithUnal={handleLoginWithUnal}
       />
 
       <Footer />

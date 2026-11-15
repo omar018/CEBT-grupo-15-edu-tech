@@ -1,6 +1,7 @@
 import React from 'react'
-import { Compass, GraduationCap, BookOpen, Zap, Sun, Moon } from 'lucide-react'
+import { Compass, GraduationCap, BookOpen, Zap, Sun, Moon, ChevronDown } from 'lucide-react'
 import { cn } from '../../lib/utils'
+import type { StudentIdentity } from '../../types/student'
 
 export type ActiveView = 'diagnostic' | 'matcher' | 'booking'
 
@@ -11,6 +12,8 @@ interface NavbarProps {
   readonly matchCount: number
   readonly theme: 'light' | 'dark'
   readonly onToggleTheme: () => void
+  readonly currentStudent: StudentIdentity
+  readonly onOpenIdentityModal: () => void
 }
 
 export const Navbar: React.FC<NavbarProps> = ({
@@ -18,6 +21,8 @@ export const Navbar: React.FC<NavbarProps> = ({
   onViewChange,
   theme,
   onToggleTheme,
+  currentStudent,
+  onOpenIdentityModal,
 }) => {
   const navItems = [
     {
@@ -87,6 +92,27 @@ export const Navbar: React.FC<NavbarProps> = ({
 
         {/* Controles de la derecha */}
         <div className="flex items-center gap-2">
+          {/* Identidad del Estudiante Conectado */}
+          <button
+            type="button"
+            onClick={onOpenIdentityModal}
+            className="flex items-center gap-2 h-9 px-2.5 sm:px-3 text-xs font-semibold rounded-lg border border-surface-200 dark:border-slate-700/80 bg-white dark:bg-[#1E232B] text-slate-800 dark:text-slate-200 hover:bg-surface-50 dark:hover:bg-slate-800 transition-colors shadow-sm"
+            title="Cambiar o configurar estudiante conectado"
+          >
+            <div className="h-6 w-6 rounded-full bg-emerald-100 dark:bg-emerald-950/80 text-emerald-800 dark:text-emerald-300 font-black text-[11px] flex items-center justify-center shrink-0">
+              {currentStudent.name.charAt(0)}
+            </div>
+            <div className="hidden sm:flex flex-col text-left leading-tight">
+              <span className="font-extrabold text-slate-900 dark:text-white truncate max-w-[110px]">
+                {currentStudent.name.split(' ')[0]} {currentStudent.name.split(' ')[1]?.[0] ? `${currentStudent.name.split(' ')[1][0]}.` : ''}
+              </span>
+              <span className="text-[10px] text-emerald-700 dark:text-emerald-400 font-mono truncate max-w-[110px]">
+                {currentStudent.email.split('@')[0]}@unal...
+              </span>
+            </div>
+            <ChevronDown className="h-3 w-3 text-slate-400 shrink-0" />
+          </button>
+
           {/* Toggle de Tema Elegante */}
           <button
             type="button"
