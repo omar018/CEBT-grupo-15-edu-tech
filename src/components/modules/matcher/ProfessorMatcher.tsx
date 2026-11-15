@@ -41,7 +41,7 @@ export const ProfessorMatcher: React.FC<ProfessorMatcherProps> = ({
   const [isDetailOpen, setIsDetailOpen] = useState(false)
   const [isChatOpen, setIsChatOpen] = useState(false)
   const [selectedMatchForChat, setSelectedMatchForChat] = useState<MatchedProfessor | null>(null)
-  const [cribaMode, setCribaMode] = useState<boolean>(true) // True = Top 3 sugerencias guiadas (Slide 7)
+  const [cribaMode, setCribaMode] = useState<boolean>(true)
 
   const handleOpenDetailModal = (profId: string) => {
     handleSelectProfessor(profId)
@@ -63,27 +63,26 @@ export const ProfessorMatcher: React.FC<ProfessorMatcherProps> = ({
     setSelectedMatchForChat(null)
   }
 
-  // Criba Edumatch: Top 3 sugerencias para evitar parálisis por análisis (Slide 7)
   const displayedMatches = cribaMode ? filteredMatches.slice(0, 3) : filteredMatches
 
   return (
     <div className="space-y-6">
-      {/* Banner Edumatch: Criba Guiada & Velocidad */}
-      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 p-4 rounded-xl bg-white border border-surface-200 shadow-subtle">
+      {/* Banner Edumatch: La Criba & Velocidad con soporte Dark Mode estricto */}
+      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 p-4 rounded-xl bg-white dark:bg-[#1E232B] border border-surface-200 dark:border-slate-800 shadow-subtle transition-colors">
         <div className="flex items-center gap-3">
-          <div className="h-10 w-10 rounded-xl bg-unal-50 border border-unal-200 flex items-center justify-center text-unal-700">
-            <Zap className="h-5 w-5 text-unal-600" />
+          <div className="h-10 w-10 rounded-xl bg-unal-50 dark:bg-unal-950/60 border border-unal-200 dark:border-unal-800 flex items-center justify-center text-unal-700 dark:text-unal-400">
+            <Zap className="h-5 w-5 fill-current" />
           </div>
           <div>
             <div className="flex items-center gap-2">
-              <h2 className="text-base font-extrabold text-slate-900 tracking-tight">
+              <h2 className="text-base font-extrabold text-slate-900 dark:text-white tracking-tight">
                 {cribaMode ? 'La Criba Edumatch (Top 3 Sugerencias)' : 'Directorio Docente Completo'}
               </h2>
               <Badge variant="lime" className="text-[11px] font-bold">
                 ≤ 5 min de decisión
               </Badge>
             </div>
-            <p className="text-xs text-slate-500 font-medium">
+            <p className="text-xs text-slate-500 dark:text-slate-400 font-medium">
               8 de 10 estudiantes prefieren recomendación guiada sin parálisis por análisis
             </p>
           </div>
@@ -145,9 +144,9 @@ export const ProfessorMatcher: React.FC<ProfessorMatcherProps> = ({
           ))}
         </div>
       ) : (
-        <div className="text-center py-12 px-4 rounded-xl bg-white border border-dashed border-surface-300 space-y-3">
+        <div className="text-center py-12 px-4 rounded-xl bg-white dark:bg-[#1E232B] border border-dashed border-surface-300 dark:border-slate-800 space-y-3">
           <BookCheck className="h-10 w-10 text-slate-400 mx-auto" />
-          <h3 className="text-sm font-bold text-slate-800">
+          <h3 className="text-sm font-bold text-slate-800 dark:text-slate-200">
             No se encontraron docentes con esos filtros
           </h3>
           <Button

@@ -92,21 +92,22 @@ export const BookingModal: React.FC<BookingModalProps> = ({
     >
       <form onSubmit={handleSubmit} className="space-y-4">
         {errorMessage && (
-          <div className="p-3 rounded-lg bg-red-50 text-red-800 text-xs font-semibold flex items-center gap-2 border border-red-200">
+          <div className="p-3 rounded-lg bg-red-50 dark:bg-red-950/60 text-red-800 dark:text-red-200 text-xs font-semibold flex items-center gap-2 border border-red-200 dark:border-red-800">
             <AlertCircle className="h-4 w-4 shrink-0" />
             <span>{errorMessage}</span>
           </div>
         )}
 
-        <div className="p-3.5 rounded-xl bg-unal-50 border border-unal-200 text-xs space-y-2">
-          <div className="flex items-center justify-between font-bold text-unal-950">
+        {/* Banner Modelo Pay-Per-Match con soporte Dark estricto */}
+        <div className="p-3.5 rounded-xl bg-emerald-50/80 dark:bg-emerald-950/40 border border-emerald-200/80 dark:border-emerald-800/60 text-xs space-y-2">
+          <div className="flex items-center justify-between font-bold text-emerald-950 dark:text-emerald-200">
             <span className="flex items-center gap-1.5">
-              <Sparkles className="h-4 w-4 text-unal-700" />
+              <Sparkles className="h-4 w-4 text-emerald-700 dark:text-emerald-400" />
               Tarifa Única de Conexión Edumatch:
             </span>
-            <span className="text-sm text-unal-800 font-extrabold">$5.000 COP</span>
+            <span className="text-sm text-emerald-800 dark:text-emerald-300 font-extrabold">$5.000 COP</span>
           </div>
-          <div className="flex items-center justify-between text-[11px] text-slate-600 pt-1 border-t border-unal-200/60">
+          <div className="flex items-center justify-between text-[11px] text-slate-600 dark:text-slate-300 pt-1 border-t border-emerald-200/60 dark:border-emerald-800/40">
             <span>Honorario del tutor: ${professor.hourlyRateCop.toLocaleString('es-CO')} / h</span>
             <Badge variant="lime" className="text-[10px]">
               Garantía de Reemplazo o Reembolso
@@ -114,27 +115,29 @@ export const BookingModal: React.FC<BookingModalProps> = ({
           </div>
         </div>
 
+        {/* Asignatura */}
         <div>
-          <label htmlFor="subject-select" className="block text-xs font-bold text-slate-700 mb-1">
+          <label htmlFor="subject-select" className="block text-xs font-bold text-slate-700 dark:text-slate-200 mb-1">
             Asignatura a trabajar *
           </label>
           <select
             id="subject-select"
             value={selectedSubject}
             onChange={(e) => setSelectedSubject(e.target.value)}
-            className="w-full h-10 px-3 text-xs bg-white border border-surface-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-unal-700/30"
+            className="w-full h-10 px-3 text-xs bg-surface-50 dark:bg-[#171B21] text-slate-900 dark:text-slate-100 border border-surface-300 dark:border-slate-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-unal-700/30 dark:focus:ring-unal-400/30"
           >
             {professor.subjects.map((subj) => (
-              <option key={subj} value={subj}>
+              <option key={subj} value={subj} className="bg-white dark:bg-[#1E232B] text-slate-900 dark:text-slate-100">
                 {subj}
               </option>
             ))}
           </select>
         </div>
 
+        {/* Fecha y Franja Horaria */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
           <div>
-            <label htmlFor="date-input" className="block text-xs font-bold text-slate-700 mb-1">
+            <label htmlFor="date-input" className="block text-xs font-bold text-slate-700 dark:text-slate-200 mb-1">
               Fecha de la tutoría *
             </label>
             <input
@@ -142,30 +145,31 @@ export const BookingModal: React.FC<BookingModalProps> = ({
               type="date"
               value={sessionDate}
               onChange={(e) => setSessionDate(e.target.value)}
-              className="w-full h-10 px-3 text-xs bg-white border border-surface-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-unal-700/30"
+              className="w-full h-10 px-3 text-xs bg-surface-50 dark:bg-[#171B21] text-slate-900 dark:text-slate-100 border border-surface-300 dark:border-slate-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-unal-700/30 dark:focus:ring-unal-400/30 [color-scheme:light] dark:[color-scheme:dark]"
             />
           </div>
 
           <div>
-            <label htmlFor="slot-select" className="block text-xs font-bold text-slate-700 mb-1">
+            <label htmlFor="slot-select" className="block text-xs font-bold text-slate-700 dark:text-slate-200 mb-1">
               Franja horaria *
             </label>
             <select
               id="slot-select"
               value={timeSlot}
               onChange={(e) => setTimeSlot(e.target.value)}
-              className="w-full h-10 px-3 text-xs bg-white border border-surface-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-unal-700/30"
+              className="w-full h-10 px-3 text-xs bg-surface-50 dark:bg-[#171B21] text-slate-900 dark:text-slate-100 border border-surface-300 dark:border-slate-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-unal-700/30 dark:focus:ring-unal-400/30"
             >
-              <option value="09:00 - 10:30 (Mañana)">09:00 - 10:30 (Mañana)</option>
-              <option value="11:00 - 12:30 (Mediodía)">11:00 - 12:30 (Mediodía)</option>
-              <option value="14:00 - 15:30 (Tarde)">14:00 - 15:30 (Tarde)</option>
-              <option value="16:00 - 17:30 (Fin de tarde)">16:00 - 17:30 (Fin de tarde)</option>
+              <option value="09:00 - 10:30 (Mañana)" className="bg-white dark:bg-[#1E232B]">09:00 - 10:30 (Mañana)</option>
+              <option value="11:00 - 12:30 (Mediodía)" className="bg-white dark:bg-[#1E232B]">11:00 - 12:30 (Mediodía)</option>
+              <option value="14:00 - 15:30 (Tarde)" className="bg-white dark:bg-[#1E232B]">14:00 - 15:30 (Tarde)</option>
+              <option value="16:00 - 17:30 (Fin de tarde)" className="bg-white dark:bg-[#1E232B]">16:00 - 17:30 (Fin de tarde)</option>
             </select>
           </div>
         </div>
 
+        {/* Tema específico */}
         <div>
-          <label htmlFor="topic-input" className="block text-xs font-bold text-slate-700 mb-1">
+          <label htmlFor="topic-input" className="block text-xs font-bold text-slate-700 dark:text-slate-200 mb-1">
             Tema específico que no entiendes *
           </label>
           <input
@@ -174,12 +178,13 @@ export const BookingModal: React.FC<BookingModalProps> = ({
             value={targetTopic}
             onChange={(e) => setTargetTopic(e.target.value)}
             placeholder="Ej: Teorema de Green y cálculo de trabajo en campos vectoriales"
-            className="w-full h-10 px-3 text-xs bg-white border border-surface-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-unal-700/30"
+            className="w-full h-10 px-3 text-xs bg-surface-50 dark:bg-[#171B21] text-slate-900 dark:text-slate-100 placeholder:text-slate-400 dark:placeholder:text-slate-500 border border-surface-300 dark:border-slate-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-unal-700/30 dark:focus:ring-unal-400/30"
           />
         </div>
 
+        {/* Notas */}
         <div>
-          <label htmlFor="notes-area" className="block text-xs font-bold text-slate-700 mb-1">
+          <label htmlFor="notes-area" className="block text-xs font-bold text-slate-700 dark:text-slate-200 mb-1">
             Comentario para el tutor (opcional)
           </label>
           <textarea
@@ -187,10 +192,11 @@ export const BookingModal: React.FC<BookingModalProps> = ({
             rows={2}
             value={studentNotes}
             onChange={(e) => setStudentNotes(e.target.value)}
-            className="w-full p-2.5 text-xs bg-white border border-surface-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-unal-700/30"
+            className="w-full p-2.5 text-xs bg-surface-50 dark:bg-[#171B21] text-slate-900 dark:text-slate-100 placeholder:text-slate-400 dark:placeholder:text-slate-500 border border-surface-300 dark:border-slate-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-unal-700/30 dark:focus:ring-unal-400/30"
           />
         </div>
 
+        {/* Botones de acción */}
         <div className="pt-2 flex items-center justify-end gap-2">
           <Button variant="secondary" type="button" onClick={onClose}>
             Cancelar

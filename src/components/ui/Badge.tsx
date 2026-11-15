@@ -8,19 +8,19 @@ export const badgeVariants = cva(
     variants: {
       variant: {
         default:
-          'bg-unal-700 text-white',
+          'bg-unal-700 text-white dark:bg-unal-600',
         unal:
-          'bg-unal-50 text-unal-800 border border-unal-200',
+          'bg-emerald-50 text-emerald-800 border border-emerald-200 dark:bg-emerald-950/60 dark:text-emerald-300 dark:border-emerald-800/60',
         lime:
-          'bg-unal-100 text-unal-900 border border-unal-300 font-bold',
+          'bg-lime-50 text-lime-900 border border-lime-300 font-bold dark:bg-lime-950/60 dark:text-lime-300 dark:border-lime-700/60',
         secondary:
-          'bg-surface-200 text-slate-800',
+          'bg-slate-100 text-slate-700 border border-slate-200 dark:bg-slate-800 dark:text-slate-300 dark:border-slate-700',
         outline:
-          'border border-slate-300 text-slate-700 bg-transparent',
+          'border border-slate-300 text-slate-700 dark:border-slate-700 dark:text-slate-300 bg-transparent',
         amber:
-          'bg-amber-100 text-amber-900 border border-amber-300',
+          'bg-amber-50 text-amber-900 border border-amber-300 dark:bg-amber-950/60 dark:text-amber-300 dark:border-amber-800/60',
         success:
-          'bg-emerald-100 text-emerald-900 border border-emerald-300',
+          'bg-emerald-50 text-emerald-900 border border-emerald-300 dark:bg-emerald-950/60 dark:text-emerald-300 dark:border-emerald-800/60',
       },
     },
     defaultVariants: {

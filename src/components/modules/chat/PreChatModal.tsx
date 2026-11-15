@@ -55,7 +55,6 @@ export const PreChatModal: React.FC<PreChatModalProps> = ({
     setMessages((prev) => [...prev, userMsg])
     setInputText('')
 
-    // Respuesta pedagógica simulada del tutor para validar química en frío (Slide 6/7)
     setTimeout(() => {
       const profReply: ChatMessage = {
         id: `reply-${Date.now()}`,
@@ -77,9 +76,9 @@ export const PreChatModal: React.FC<PreChatModalProps> = ({
     >
       <div className="flex flex-col h-[480px]">
         {/* Banner de Garantía y Confianza */}
-        <div className="flex items-center justify-between p-2.5 rounded-lg bg-unal-50 border border-unal-200 text-xs mb-3 shrink-0">
-          <div className="flex items-center gap-1.5 text-unal-800 font-semibold">
-            <ShieldCheck className="h-4 w-4 text-unal-700" />
+        <div className="flex items-center justify-between p-2.5 rounded-lg bg-emerald-50/80 dark:bg-emerald-950/40 border border-emerald-200/80 dark:border-emerald-800/60 text-xs mb-3 shrink-0">
+          <div className="flex items-center gap-1.5 text-emerald-900 dark:text-emerald-300 font-semibold">
+            <ShieldCheck className="h-4 w-4 text-emerald-700 dark:text-emerald-400" />
             <span>Chat Previo sin Costo · Confianza antes del pago</span>
           </div>
           <Badge variant="lime" className="text-[10px]">
@@ -89,7 +88,7 @@ export const PreChatModal: React.FC<PreChatModalProps> = ({
         </div>
 
         {/* Zona de Mensajes */}
-        <div className="flex-1 overflow-y-auto space-y-3 p-3 rounded-xl bg-surface-50 border border-surface-200/70">
+        <div className="flex-1 overflow-y-auto space-y-3 p-3 rounded-xl bg-surface-50 dark:bg-[#171B21] border border-surface-200/70 dark:border-slate-800">
           {messages.map((msg) => (
             <div
               key={msg.id}
@@ -98,13 +97,13 @@ export const PreChatModal: React.FC<PreChatModalProps> = ({
               <div
                 className={`max-w-[85%] p-3 rounded-2xl text-xs leading-relaxed ${
                   msg.sender === 'student'
-                    ? 'bg-unal-700 text-white rounded-br-none shadow-sm'
-                    : 'bg-white text-slate-800 border border-surface-200 rounded-bl-none shadow-sm'
+                    ? 'bg-unal-700 dark:bg-unal-600 text-white rounded-br-none shadow-sm'
+                    : 'bg-white dark:bg-[#1E232B] text-slate-800 dark:text-slate-100 border border-surface-200 dark:border-slate-700 rounded-bl-none shadow-sm'
                 }`}
               >
                 {msg.text}
               </div>
-              <span className="text-[10px] text-slate-400 mt-0.5 px-1">{msg.time}</span>
+              <span className="text-[10px] text-slate-400 dark:text-slate-500 mt-0.5 px-1">{msg.time}</span>
             </div>
           ))}
         </div>
@@ -116,17 +115,17 @@ export const PreChatModal: React.FC<PreChatModalProps> = ({
             value={inputText}
             onChange={(e) => setInputText(e.target.value)}
             placeholder="Pregúntale sobre su método, disponibilidad o un ejercicio..."
-            className="flex-1 h-10 px-3 text-xs bg-white border border-surface-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-unal-700/30"
+            className="flex-1 h-10 px-3 text-xs bg-white dark:bg-[#171B21] text-slate-900 dark:text-slate-100 placeholder:text-slate-400 dark:placeholder:text-slate-500 border border-surface-300 dark:border-slate-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-unal-700/30 dark:focus:ring-unal-400/30"
           />
           <Button type="submit" variant="default" size="sm" className="h-10 px-3">
             <Send className="h-3.5 w-3.5" />
           </Button>
         </form>
 
-        {/* Call to Action: Pasar a la reserva con garantía Edumatch */}
-        <div className="mt-3 pt-3 border-t border-surface-100 flex items-center justify-between gap-2 shrink-0">
-          <div className="text-[11px] text-slate-500">
-            ¿Buena química? Tarifa de match: <strong className="text-slate-800">COP $5.000</strong>
+        {/* Call to Action */}
+        <div className="mt-3 pt-3 border-t border-surface-100 dark:border-slate-800 flex items-center justify-between gap-2 shrink-0">
+          <div className="text-[11px] text-slate-500 dark:text-slate-400">
+            ¿Buena química? Tarifa de match: <strong className="text-slate-800 dark:text-slate-200">COP $5.000</strong>
           </div>
           <Button
             variant="lime"
