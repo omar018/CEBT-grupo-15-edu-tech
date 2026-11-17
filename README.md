@@ -24,7 +24,7 @@
 1. **Diagnóstico Express (< 5 min):** Umbral crítico de tolerancia inicial (7 de 8 estudiantes toleran máximo 5 min).
 2. **La Criba Edumatch (Top 2-3 sugerencias):** Elimina la parálisis por análisis; 8 de 10 prefieren recomendaciones guiadas en lugar de directorios exhaustivos.
 3. **Pivote de Confianza (Reseñas de Pares & Chat Gratuito Pre-Pago):** 8 de 10 prefieren reseñas de compañeros sobre notas institucionales. Para arranques en frío, el **chat previo gratuito en vivo** valida la química antes de abrir la billetera.
-4. **Captura de Valor (Pay-Per-Match):** Tarifa plana de conexión de **COP $5.000** (aceptada por el 100% de los entrevistados).
+4. **Captura de Valor (Pago de Hora Completa):** Para reservar la tutoría se realiza el pago de la **tarifa por hora completa del tutor** con respaldo de la plataforma.
 5. **Defensa contra WhatsApp:** Garantía de **reemplazo automático y reembolso asegurado** si el tutor no asiste o cancela.
 
 ---
@@ -37,7 +37,7 @@
 - **H5/H8 (Usabilidad):** *Validada* — Diagnóstico en < 5 min y criba de 2-3 sugerencias.
 - **H6 (Confianza):** *Ajustada* — Reseñas de estudiantes y chat previo gratuito.
 - **H9 (Retención vs WhatsApp):** *Ajustada* — Garantía de reemplazo como ancla.
-- **H10 (Pricing):** *Validada* — COP $5.000 es el punto dulce.
+- **H10 (Pricing):** *Validada* — Reserva mediante el pago de la tarifa por hora completa del tutor.
 
 ---
 

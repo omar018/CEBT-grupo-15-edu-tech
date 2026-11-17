@@ -115,7 +115,7 @@ export function App() {
               De la improvisación al emparejamiento perfecto en ciencias básicas
             </h1>
             <p className="mt-2 text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
-              7 de 10 estudiantes tardan más de 24 horas buscando tutor en WhatsApp. Con Edumatch, obtén en ≤ 5 minutos tus 2-3 tutores ideales, valida la química con un chat previo gratuito y agenda con garantía de reemplazo por solo $5.000 COP.
+              7 de 10 estudiantes tardan más de 24 horas buscando tutor en WhatsApp. Con Edumatch, obtén en ≤ 5 minutos tus 2-3 tutores ideales, valida la química con un chat previo gratuito y reserva pagando la tarifa por hora completa del tutor con garantía de reemplazo o reembolso.
             </p>
 
             <div className="mt-4 flex flex-wrap gap-4 text-xs font-semibold text-slate-600 dark:text-slate-300">

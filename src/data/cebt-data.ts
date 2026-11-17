@@ -7,7 +7,7 @@ export const EDUMATCH_VALIDATION_DATA: EdumatchValidationState = {
   university: 'Universidad Nacional de Colombia',
   cohortDate: 'Octubre de 2026',
   targetSegment: 'Perfil: El Urgente (Ingeniería semestres 1 a 4 con parcial en días)',
-  valueCaptureConnectionFeeCop: 5000,
+  valueCaptureConnectionFeeCop: 32000,
   marketHourlyRateCopRange: 'COP $25.000 - $40.000 / hora',
   teamMembers: [
     { name: 'Santiago Cañaveral Loaiza', role: 'Estrategia & Descubrimiento de Cliente' },
@@ -76,10 +76,10 @@ export const EDUMATCH_VALIDATION_DATA: EdumatchValidationState = {
     {
       id: 'H10',
       category: 'El Negocio',
-      name: 'Pricing (Pay-Per-Match)',
+      name: 'Pricing (Pago de Hora Completa)',
       status: 'Validada',
-      learning: '10 de 10 estudiantes aceptan pagar COP $5.000 por conexión garantizada (representa solo ~17% del costo promedio de la tutoría).',
-      decision: 'Fijar la tarifa plana de conexión en COP $5.000 por match efectivo.',
+      learning: 'Los estudiantes prefieren reservar pagando directamente la tarifa por hora completa del tutor (COP $29.000 - $35.000) con garantía de reemplazo o reembolso total.',
+      decision: 'Cobrar el 100% de la tarifa por hora del tutor al momento de agendar la reserva.',
     },
   ],
   userJourney: [
@@ -107,9 +107,9 @@ export const EDUMATCH_VALIDATION_DATA: EdumatchValidationState = {
     {
       stageNumber: 4,
       title: 'Primera Clase',
-      whatUserDoes: 'Paga entre $25.000 - $40.000/h al tutor.',
+      whatUserDoes: 'Paga la tarifa por hora completa del tutor ($29.000 - $35.000/h) para reservar.',
       painPoint: 'Desajuste metodológico o cancelación de última hora.',
-      edumatchOpportunity: 'Tarifa de match COP $5.000 + garantía de cambio de tutor sin costo.',
+      edumatchOpportunity: 'Pago protegido de la hora completa + garantía de cambio de tutor o reembolso.',
     },
     {
       stageNumber: 5,
@@ -130,7 +130,7 @@ export const EDUMATCH_VALIDATION_DATA: EdumatchValidationState = {
     {
       id: 'kpi-2',
       label: 'Conversión Chat → Clase Pagada',
-      description: 'Estudiantes que tras validar química en el chat abonan la tarifa de COP $5.000.',
+      description: 'Estudiantes que tras validar química en el chat pagan la tarifa por hora completa del tutor para reservar.',
       targetPercentage: 100,
       currentPercentage: 82,
     },

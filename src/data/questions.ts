@@ -223,7 +223,7 @@ export const DIAGNOSTIC_QUESTIONS: readonly DiagnosticQuestion[] = [
       },
       {
         id: 'q6-free-prechat',
-        label: 'Poder chatear gratis con él antes de pagar la tarifa de conexión',
+        label: 'Poder chatear gratis con él antes de pagar la tarifa por hora de la tutoría',
         description: 'Comprobar su velocidad de respuesta y amabilidad antes de comprometer dinero (H6, H10).',
         impact: { practical: 20, autonomy: 20 },
         sensoryHint: 'visual',

@@ -114,10 +114,10 @@ export const ProfessorCard: React.FC<ProfessorCardProps> = ({
         <div className="mt-4 pt-3 border-t border-surface-100 dark:border-slate-800 space-y-2">
           <div className="flex items-center justify-between text-xs">
             <span className="text-slate-500 dark:text-slate-400 font-medium">
-              Hora: <strong className="text-slate-800 dark:text-slate-200">${professor.hourlyRateCop.toLocaleString('es-CO')} COP</strong>
+              Tarifa / hora: <strong className="text-slate-800 dark:text-slate-200">${professor.hourlyRateCop.toLocaleString('es-CO')} COP</strong>
             </span>
             <span className="text-[11px] font-bold text-unal-700 dark:text-unal-400 bg-unal-50 dark:bg-unal-950/80 px-2 py-0.5 rounded border border-unal-200/50 dark:border-unal-800/50">
-              Conexión: $5.000 COP
+              Reserva: ${professor.hourlyRateCop.toLocaleString('es-CO')} COP
             </span>
           </div>
 

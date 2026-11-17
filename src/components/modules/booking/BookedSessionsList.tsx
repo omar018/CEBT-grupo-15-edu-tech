@@ -34,6 +34,7 @@ export const BookedSessionsList: React.FC<BookedSessionsListProps> = ({
       matchScore: 85,
     },
   ]
+  const primarySessionRateCop = effectiveSessions[0]?.professor.hourlyRateCop ?? fallbackProf.hourlyRateCop
 
   return (
     <div className="space-y-6">
@@ -112,13 +113,15 @@ export const BookedSessionsList: React.FC<BookedSessionsListProps> = ({
               className="text-xs h-7 border-amber-400 dark:border-amber-700 text-amber-900 dark:text-amber-300"
             >
               <RefreshCw className="h-3 w-3 mr-1" />
-              {refundRequested ? 'Reembolso COP $5.000 Procesado' : 'Reembolso Inmediato ($5.000 COP)'}
+              {refundRequested
+                ? `Reembolso COP $${primarySessionRateCop.toLocaleString('es-CO')} Procesado`
+                : `Reembolso Inmediato ($${primarySessionRateCop.toLocaleString('es-CO')} COP)`}
             </Button>
           </div>
 
           {refundRequested && (
             <p className="text-[11px] font-semibold text-emerald-800 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/60 p-2 rounded border border-emerald-200 dark:border-emerald-800">
-              ✓ Tu tarifa de conexión de $5.000 COP fue devuelta instantáneamente a tu cuenta. ¡Cero riesgo para el estudiante!
+              ✓ Tu pago de reserva por ${primarySessionRateCop.toLocaleString('es-CO')} COP (tarifa por hora completa del tutor) fue devuelto instantáneamente a tu cuenta. ¡Cero riesgo para el estudiante!
             </p>
           )}
         </div>
@@ -176,6 +179,10 @@ export const BookedSessionsList: React.FC<BookedSessionsListProps> = ({
                     Acuerdo: "{sess.studentNotes}"
                   </p>
                 )}
+                <div className="pt-1 flex items-center justify-between text-[11px] text-emerald-700 dark:text-emerald-400 font-semibold border-t border-surface-200/50 dark:border-slate-800/80">
+                  <span>Tarifa por hora abonada:</span>
+                  <span>${sess.professor.hourlyRateCop.toLocaleString('es-CO')} COP</span>
+                </div>
               </div>
 
               <div className="flex flex-wrap items-center justify-between text-xs text-slate-600 dark:text-slate-400 pt-1 border-t border-surface-100 dark:border-slate-800 gap-2">

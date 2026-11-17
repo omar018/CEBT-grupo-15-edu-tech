@@ -125,7 +125,7 @@ export const PreChatModal: React.FC<PreChatModalProps> = ({
         {/* Call to Action */}
         <div className="mt-3 pt-3 border-t border-surface-100 dark:border-slate-800 flex items-center justify-between gap-2 shrink-0">
           <div className="text-[11px] text-slate-500 dark:text-slate-400">
-            ¿Buena química? Tarifa de match: <strong className="text-slate-800 dark:text-slate-200">COP $5.000</strong>
+            ¿Buena química? Reserva (1 hora): <strong className="text-slate-800 dark:text-slate-200">${professor.hourlyRateCop.toLocaleString('es-CO')} COP</strong>
           </div>
           <Button
             variant="lime"

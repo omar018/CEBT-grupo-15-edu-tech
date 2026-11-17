@@ -98,17 +98,19 @@ export const BookingModal: React.FC<BookingModalProps> = ({
           </div>
         )}
 
-        {/* Banner Modelo Pay-Per-Match con soporte Dark estricto */}
+        {/* Banner Modelo de Pago de Hora Completa con soporte Dark estricto */}
         <div className="p-3.5 rounded-xl bg-emerald-50/80 dark:bg-emerald-950/40 border border-emerald-200/80 dark:border-emerald-800/60 text-xs space-y-2">
           <div className="flex items-center justify-between font-bold text-emerald-950 dark:text-emerald-200">
             <span className="flex items-center gap-1.5">
               <ShieldCheck className="h-4 w-4 text-emerald-700 dark:text-emerald-400" />
-              Tarifa Única de Conexión Edumatch:
+              Tarifa por Hora del Tutor (Pago para Reservar):
             </span>
-            <span className="text-sm text-emerald-800 dark:text-emerald-300 font-extrabold">$5.000 COP</span>
+            <span className="text-sm text-emerald-800 dark:text-emerald-300 font-extrabold">
+              ${professor.hourlyRateCop.toLocaleString('es-CO')} COP
+            </span>
           </div>
           <div className="flex items-center justify-between text-[11px] text-slate-600 dark:text-slate-300 pt-1 border-t border-emerald-200/60 dark:border-emerald-800/40">
-            <span>Honorario del tutor: ${professor.hourlyRateCop.toLocaleString('es-CO')} / h</span>
+            <span>Reserva abonando el 100% de la hora del tutor</span>
             <Badge variant="lime" className="text-[10px]">
               Garantía de Reemplazo o Reembolso
             </Badge>
@@ -202,7 +204,7 @@ export const BookingModal: React.FC<BookingModalProps> = ({
             Cancelar
           </Button>
           <Button variant="default" type="submit" className="font-semibold shadow-sm">
-            Abonar $5.000 COP y Agendar
+            Pagar ${professor.hourlyRateCop.toLocaleString('es-CO')} COP y Agendar
           </Button>
         </div>
       </form>

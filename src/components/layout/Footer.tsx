@@ -18,7 +18,7 @@ export const Footer: React.FC = () => {
 
         <div className="pt-3 border-t border-surface-100 dark:border-slate-800/80 text-[11px] text-slate-400 dark:text-slate-500 flex flex-wrap items-center justify-between gap-2">
           <span>
-            Garantía de Reemplazo Inmediato · Reembolso de Tarifa de Conexión Protegido
+            Garantía de Reemplazo Inmediato · Pago de Tarifa por Hora Protegido con Reembolso
           </span>
           <span>
             Ciencias Básicas: Cálculo, Álgebra Lineal, Física Mecánica y Programación
